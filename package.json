@@ -1,0 +1,46 @@
+{
+  "name": "features-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/react-hooks": "^3.0.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-device-detect": "^1.7.5",
+    "react-dom": "^16.9.0",
+    "react-fade-in": "^0.1.7",
+    "react-hotkeys": "^2.0.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.0",
+    "react-sizes": "^2.0.0",
+    "react-stonecutter": "^0.3.10",
+    "react-tiny-popover": "^3.4.5",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pretty": "prettier --config .prettier.json  --write \"src/**/*.js\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
+  }
+}

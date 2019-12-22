@@ -1,0 +1,154 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  margin: 0;
+}
+
+/*Had to move these styles into here because of a bug with styled-components
+where fonts are requested from the server (flickering happens) when props for
+a component changes*/
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ThinIta.ttf") format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Light.ttf") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-BoldIta.ttf") format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-RegIta.ttf") format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtLtIta.ttf") format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-MedIta.ttf") format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtLt.ttf") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtBlk.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtBdIta.ttf") format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtBlkIta.ttf") format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Thin.ttf") format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-LightIta.ttf") format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-ExtraBold.ttf") format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Medium.ttf") format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-HairlineI.ttf") format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-BlackIta.ttf") format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Black.ttf") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url("./assets/fonts/helvetica/HelveticaNowDisplay-Hairline.ttf") format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
