@@ -7,7 +7,7 @@ import {
 } from "./UnsupportedError.Style.js";
 import PropTypes from "prop-types";
 
-class UnsupportedError extends React.Component {
+class UnsupportedError extends React.PureComponent {
 	render() {
 		if (this.props.show) {
 			document.getElementById("root").style.filter = "blur(20px)";

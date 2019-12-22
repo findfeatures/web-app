@@ -14,9 +14,7 @@ export const LoginCardDiv = styled.div`
 	min-width: 500px;
 	max-width: 800px;
 
-	height: 65%;
-	min-height: 500px;
-	max-height: 550px;
+	height: 550px;
 
 	background-color: white;
 
@@ -53,7 +51,7 @@ export const LogoWrapper = styled.div`
 export const FormWrapper = styled.div`
 	width: 65%;
 
-	height: 60%;
+	height: 65%;
 
 	background-color: white;
 
@@ -61,4 +59,24 @@ export const FormWrapper = styled.div`
 	// -webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	// -moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	position: relative;
+`;
+
+export const StyledLabel = styled.label`	
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	
+	margin-top: 30px;
+`;
+
+export const StayLoggedInDiv = styled.div`
+	margin-top: 30px;
+	width: 90%;
+
+	margin: 0 auto 0 auto;	
+`;
+
+export const StyledSpan = styled.span`
+	margin-left: 10px;
+	font-weight: 600;
 `;

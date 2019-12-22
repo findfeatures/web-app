@@ -1,6 +1,7 @@
 import React from "react";
 import BlockButton from "../../components/BlockButton";
 import LoginInput from "../../components/LoginInput";
+import Checkbox from "../../components/Checkbox";
 
 import {
 	LoginPageDiv,
@@ -8,6 +9,9 @@ import {
 	LogoWrapper,
 	ButtonWrapper,
 	FormWrapper,
+	StyledLabel,
+	StayLoggedInDiv,
+	StyledSpan
 } from "./Login.Style.js";
 
 class Login extends React.Component {
@@ -19,6 +23,8 @@ class Login extends React.Component {
 		passwordInputValue: '',
 		passwordErrorMessage: '',
 		showPasswordError: false,
+
+		staySignedInChecked: false
 	};
 
 	handleUsernameInputValueChange = (val) => {
@@ -52,13 +58,16 @@ class Login extends React.Component {
 	};
 
 	handleLoginClicked = () => {
-		// this.setState({loginPressed: true})
 		const usernameError = this.validateUsernameInput();
 		const passwordError = this.validatePasswordInput();
 
 		if (!usernameError && !passwordError) {
 			console.log('make request to server!');
 		}
+	};
+
+	handleStaySignedInCheckChange = (val) => {
+		this.setState({staySignedInChecked: val});
 	};
 
 	render() {
@@ -83,13 +92,15 @@ class Login extends React.Component {
 							showError={this.state.showPasswordError}
 							errorMessage={this.state.passwordErrorMessage}
 						/>
-						<div
-							style={{
-								// backgroundColor: "yellow",
-								width: "100%",
-								height: "30%",
-							}}
-						></div>
+						<StayLoggedInDiv>
+							<StyledLabel>
+								<Checkbox
+									checked={this.state.staySignedInChecked}
+									onCheckChange={this.handleStaySignedInCheckChange}
+								/>
+								<StyledSpan>Stay Signed In</StyledSpan>
+							</StyledLabel>
+						</StayLoggedInDiv>
 					</FormWrapper>
 
 					<ButtonWrapper>

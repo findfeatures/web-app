@@ -46,7 +46,6 @@ export const ErrorDiv = styled.div`
 	bottom: 0;
 	margin-bottom: -18px;
 	position: absolute;
-	// background-color: red;
 	position: absolute;
 	color: red;
 	user-select: none;
