@@ -54,8 +54,9 @@ export const FormWrapper = styled.div`
 	height: 65%;
 
 	background-color: white;
+	margin-top: 8%; 
 
-	// box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
+	//box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	// -webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	// -moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	position: relative;
@@ -65,15 +66,19 @@ export const StyledLabel = styled.label`
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	
-	margin-top: 30px;
+	cursor: pointer;
 `;
 
-export const StayLoggedInDiv = styled.div`
+export const ExtraDetailsDiv = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
 	margin-top: 30px;
 	width: 90%;
 
-	margin: 0 auto 0 auto;	
+	margin: 0 auto 0 auto;
+	margin-top: 30px;
 `;
 
 export const StyledSpan = styled.span`

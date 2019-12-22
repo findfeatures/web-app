@@ -10,7 +10,7 @@ import {
 	ButtonWrapper,
 	FormWrapper,
 	StyledLabel,
-	StayLoggedInDiv,
+	ExtraDetailsDiv,
 	StyledSpan
 } from "./Login.Style.js";
 
@@ -92,7 +92,7 @@ class Login extends React.Component {
 							showError={this.state.showPasswordError}
 							errorMessage={this.state.passwordErrorMessage}
 						/>
-						<StayLoggedInDiv>
+						<ExtraDetailsDiv>
 							<StyledLabel>
 								<Checkbox
 									checked={this.state.staySignedInChecked}
@@ -100,7 +100,11 @@ class Login extends React.Component {
 								/>
 								<StyledSpan>Stay Signed In</StyledSpan>
 							</StyledLabel>
-						</StayLoggedInDiv>
+
+							<div>
+								Forgot your password?
+							</div>
+						</ExtraDetailsDiv>
 					</FormWrapper>
 
 					<ButtonWrapper>
