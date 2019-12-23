@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "prettier": "1.18.2",
     "redux-devtools": "^3.5.0"
   }
