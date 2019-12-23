@@ -2,17 +2,24 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-
-import Home from "./pages/Main";
-
+import { createStore, applyMiddleware } from "redux";
+import reducer from "./redux/reducers/index";
+import Main from "./pages/Main";
 import { createGlobalFeatureStyle } from "./globalStyle.js";
+import apiMiddleware from "./redux/middleware/api";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const GlobalStyle = createGlobalFeatureStyle();
+
+const store = createStore(reducer, {}, composeWithDevTools(applyMiddleware(apiMiddleware)));
 
 ReactDOM.render(
 	<>
 		<GlobalStyle />
-		<Home />
+		<Provider store={store}>
+			<Main />
+		</Provider>
 	</>,
 	document.getElementById("root"),
 );

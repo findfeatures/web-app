@@ -13,7 +13,7 @@ class BlockButton extends React.PureComponent {
 }
 
 BlockButton.defaultProps = {
-	handleButtonClick: () => console.log("clicked button!"),
+	handleButtonClick: () => {},
 };
 
 BlockButton.propTypes = {

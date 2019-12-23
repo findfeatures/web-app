@@ -2,6 +2,10 @@ import React from "react";
 import BlockButton from "../../components/BlockButton";
 import LoginInput from "../../components/LoginInput";
 import Checkbox from "../../components/Checkbox";
+import PropTypes from 'prop-types';
+import {
+	navigate
+} from "@reach/router"
 
 import {
 	LoginPageDiv,
@@ -13,6 +17,8 @@ import {
 	ExtraDetailsDiv,
 	StyledSpan,
 } from "./Login.Style.js";
+import {connect} from "react-redux";
+import {authenticateUser} from "../../redux/actions/auth";
 
 class Login extends React.Component {
 	state = {
@@ -25,6 +31,24 @@ class Login extends React.Component {
 		showPasswordError: false,
 
 		staySignedInChecked: false,
+	};
+
+	componentDidUpdate(prevProps) {
+		const finishedAuthenticatingUser = (this.props.isAuthenticatingUser !== prevProps.isAuthenticatingUser) && prevProps.isAuthenticatingUser;
+
+		if (finishedAuthenticatingUser) {
+			this.handleFinishedAuthenticationUser(this.props.statusCode)
+		}
+	}
+
+	handleFinishedAuthenticationUser = (statusCode) => {
+		if (statusCode === 200) {
+			navigate('/dashboard')
+		} else {
+			// we could handle different codes here a bit better
+			// (e.g. 500 "internal server error" or 401 "not authorised")
+			this.setState({showPasswordError: true, passwordErrorMessage: "Incorrect Email / Password combination!"})
+		}
 	};
 
 	handleUsernameInputValueChange = val => {
@@ -72,7 +96,7 @@ class Login extends React.Component {
 		const passwordError = this.validatePasswordInput();
 
 		if (!usernameError && !passwordError) {
-			console.log("make request to server!");
+			this.props.authenticateUser(this.state.usernameInputValue, this.state.passwordInputValue);
 		}
 	};
 
@@ -126,6 +150,28 @@ class Login extends React.Component {
 	}
 }
 
-Login.propTypes = {};
+Login.defaultProps = {
+	isAuthenticatingUser: false,
+	statusCode: 200,
+	authenticateUser: () => {}
+};
 
-export default Login;
+Login.propTypes = {
+	isAuthenticatingUser: PropTypes.bool,
+	statusCode: PropTypes.number,
+	authenticateUser: PropTypes.func
+};
+
+const mapStateToProps = (reduxState) => {
+	return {
+		isAuthenticatingUser: reduxState.auth.isAuthenticatingUser,
+		statusCode: reduxState.auth.statusCode
+	}
+};
+
+export default connect(
+	mapStateToProps,
+	{
+		authenticateUser,
+	},
+)(Login);
