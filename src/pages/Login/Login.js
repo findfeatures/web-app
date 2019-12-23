@@ -11,48 +11,58 @@ import {
 	FormWrapper,
 	StyledLabel,
 	ExtraDetailsDiv,
-	StyledSpan
+	StyledSpan,
 } from "./Login.Style.js";
 
 class Login extends React.Component {
 	state = {
-		usernameInputValue: '',
-		usernameErrorMessage: '',
+		usernameInputValue: "",
+		usernameErrorMessage: "",
 		showUsernameError: false,
 
-		passwordInputValue: '',
-		passwordErrorMessage: '',
+		passwordInputValue: "",
+		passwordErrorMessage: "",
 		showPasswordError: false,
 
-		staySignedInChecked: false
+		staySignedInChecked: false,
 	};
 
-	handleUsernameInputValueChange = (val) => {
-		this.setState({usernameInputValue: val}, () => this.validateUsernameInput());
+	handleUsernameInputValueChange = val => {
+		this.setState({ usernameInputValue: val }, () =>
+			this.validateUsernameInput(),
+		);
 	};
 
 	validateUsernameInput = () => {
 		// check if username is empty (spaces = empty)
-		if (this.state.usernameInputValue.replace(/\s/g, '') === "") {
-			this.setState({usernameErrorMessage: 'Username is required.', showUsernameError: true});
+		if (this.state.usernameInputValue.replace(/\s/g, "") === "") {
+			this.setState({
+				usernameErrorMessage: "Username is required.",
+				showUsernameError: true,
+			});
 			return true;
 		} else {
-			this.setState({usernameErrorMessage: '', showUsernameError: false});
+			this.setState({ usernameErrorMessage: "", showUsernameError: false });
 			return false;
 		}
 	};
 
-	handlePasswordInputValueChange = (val) => {
-		this.setState({passwordInputValue: val}, () => this.validatePasswordInput());
+	handlePasswordInputValueChange = val => {
+		this.setState({ passwordInputValue: val }, () =>
+			this.validatePasswordInput(),
+		);
 	};
 
 	validatePasswordInput = () => {
 		// check if username is empty (spaces = empty)
 		if (this.state.passwordInputValue === "") {
-			this.setState({passwordErrorMessage: 'Password is required.', showPasswordError: true});
+			this.setState({
+				passwordErrorMessage: "Password is required.",
+				showPasswordError: true,
+			});
 			return true;
 		} else {
-			this.setState({passwordErrorMessage: '', showPasswordError: false});
+			this.setState({ passwordErrorMessage: "", showPasswordError: false });
 			return false;
 		}
 	};
@@ -62,12 +72,12 @@ class Login extends React.Component {
 		const passwordError = this.validatePasswordInput();
 
 		if (!usernameError && !passwordError) {
-			console.log('make request to server!');
+			console.log("make request to server!");
 		}
 	};
 
-	handleStaySignedInCheckChange = (val) => {
-		this.setState({staySignedInChecked: val});
+	handleStaySignedInCheckChange = val => {
+		this.setState({ staySignedInChecked: val });
 	};
 
 	render() {
@@ -101,14 +111,14 @@ class Login extends React.Component {
 								<StyledSpan>Stay Signed In</StyledSpan>
 							</StyledLabel>
 
-							<div>
-								Forgot your password?
-							</div>
+							<div>Forgot your password?</div>
 						</ExtraDetailsDiv>
 					</FormWrapper>
 
 					<ButtonWrapper>
-						<BlockButton handleButtonClick={this.handleLoginClicked}>LOG IN</BlockButton>
+						<BlockButton handleButtonClick={this.handleLoginClicked}>
+							LOG IN
+						</BlockButton>
 					</ButtonWrapper>
 				</LoginCardDiv>
 			</LoginPageDiv>

@@ -25,7 +25,6 @@ export const Wrapper = styled.div`
 
 export const LogoDiv = styled.div`
 	font-weight: 900;
-	font-family
-	font-size: 20px;
+	font-familyfont-size: 20px;
 	margin-bottom: 5px;
 `;

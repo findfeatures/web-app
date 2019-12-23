@@ -54,7 +54,7 @@ export const FormWrapper = styled.div`
 	height: 65%;
 
 	background-color: white;
-	margin-top: 8%; 
+	margin-top: 8%;
 
 	//box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	// -webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
@@ -62,7 +62,7 @@ export const FormWrapper = styled.div`
 	position: relative;
 `;
 
-export const StyledLabel = styled.label`	
+export const StyledLabel = styled.label`
 	display: flex;
 	align-items: center;
 	flex-direction: row;

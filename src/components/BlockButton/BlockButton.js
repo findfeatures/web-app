@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledButton } from "./BlockButton.Style.js";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class BlockButton extends React.PureComponent {
 	render() {
@@ -13,11 +13,11 @@ class BlockButton extends React.PureComponent {
 }
 
 BlockButton.defaultProps = {
-	handleButtonClick: () => console.log('clicked button!')
+	handleButtonClick: () => console.log("clicked button!"),
 };
 
 BlockButton.propTypes = {
-	handleButtonClick: PropTypes.func
+	handleButtonClick: PropTypes.func,
 };
 
 export default BlockButton;
