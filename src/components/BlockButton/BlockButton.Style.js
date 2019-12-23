@@ -10,9 +10,14 @@ export const StyledButton = styled.button`
 	font-weight: 800;
 	letter-spacing: 2px;
 	outline: none;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 
 	:active {
-		background-color: #0055fe;
-		color: #ffffff;
+		background-color: ${props => props.disabled ? 'black' : '#0055fe'};
+		color: white;
 	}
 `;

@@ -22,6 +22,7 @@ class LoginInput extends React.PureComponent {
 						onChange={this.handleInputChange}
 						type={this.props.type}
 						value={this.props.inputValue}
+						disabled={this.props.disabled}
 					/>
 				</InputDiv>
 				{this.props.showError && <ErrorDiv>{this.props.errorMessage}</ErrorDiv>}
@@ -34,7 +35,8 @@ LoginInput.defaultProps = {
 	type: "text",
 	showError: false,
 	errorMessage: "You have an error!",
-	handleInputValueChange: val => console.log(`InputValue: ${val}`),
+	handleInputValueChange: () => {},
+	disabled: false
 };
 
 LoginInput.propTypes = {
@@ -44,6 +46,7 @@ LoginInput.propTypes = {
 	type: PropTypes.string,
 	showError: PropTypes.bool,
 	errorMessage: PropTypes.string,
+	disabled: PropTypes.bool
 };
 
 export default LoginInput;

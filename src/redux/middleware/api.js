@@ -67,6 +67,16 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 					statusCode: error.response.status,
 					error: error.response
 				}));
+			} else {
+				// default to status code 503 if dont get response back
+				// (can happen if cant connect to server)
+				dispatch(apiEnd({
+					label,
+					statusCode: 503,
+					error: {
+						message: 'Can\'t connect to server!'
+					}
+				}));
 			}
 
 			if (onFailure) {

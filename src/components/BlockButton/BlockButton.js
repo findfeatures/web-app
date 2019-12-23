@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 class BlockButton extends React.PureComponent {
 	render() {
 		return (
-			<StyledButton onClick={this.props.handleButtonClick}>
+			<StyledButton onClick={this.props.handleButtonClick} disabled={this.props.disabled}>
 				{this.props.children}
 			</StyledButton>
 		);
@@ -14,10 +14,12 @@ class BlockButton extends React.PureComponent {
 
 BlockButton.defaultProps = {
 	handleButtonClick: () => {},
+	disabled: false
 };
 
 BlockButton.propTypes = {
 	handleButtonClick: PropTypes.func,
+	disabled: PropTypes.bool
 };
 
 export default BlockButton;

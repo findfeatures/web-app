@@ -31,7 +31,7 @@ class Checkbox extends React.PureComponent {
 
 Checkbox.defaultProps = {
 	checked: false,
-	onCheckChange: () => console.log("checked Checkbox"),
+	onCheckChange: () => {},
 };
 
 Checkbox.propTypes = {
