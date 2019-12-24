@@ -27,8 +27,8 @@ class UnsupportedError extends React.PureComponent {
 						possible) please enlarge the size of your screen to at least{" "}
 						<i>1000px x 600px</i> or try rotating your device. <br />
 						<br />
-						If you think this is an error, please contact us directly at{" "}
-						<i>email address here</i>.
+						If you think this is an error, please contact us directly at
+						<i> support@findfeatures.io</i>.
 					</Wrapper>
 				</FullScreenCenteredDiv>,
 				document.getElementById("portal"),

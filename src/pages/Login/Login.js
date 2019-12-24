@@ -10,14 +10,14 @@ import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { authenticateUser } from "../../redux/actions/auth";
 import {
-	ButtonWrapper,
 	ExtraDetailsDiv,
 	FormWrapper,
 	LoginPageDiv,
 	LogoWrapper,
+	RightButtonWrapper,
 	StyledLabel,
+	StyledSignUpDiv,
 	StyledSpan,
-	StyledSignUpDiv
 } from "./Login.Style.js";
 
 class Login extends React.Component {
@@ -130,6 +130,10 @@ class Login extends React.Component {
 		this.setState({ staySignedInChecked: val });
 	};
 
+	handleSignUpClicked = () => {
+		navigate("/sign-up");
+	};
+
 	render() {
 		return (
 			<LoginPageDiv>
@@ -166,18 +170,18 @@ class Login extends React.Component {
 						</ExtraDetailsDiv>
 					</FormWrapper>
 
-					<StyledSignUpDiv>
+					<StyledSignUpDiv onClick={this.handleSignUpClicked}>
 						Need an account? Sign up <b>here</b>!
 					</StyledSignUpDiv>
 
-					<ButtonWrapper>
+					<RightButtonWrapper>
 						<BlockButton
 							handleButtonClick={this.handleLoginClicked}
 							disabled={this.state.loading}
 						>
 							{this.state.loading ? <Spinner /> : "LOG IN"}
 						</BlockButton>
-					</ButtonWrapper>
+					</RightButtonWrapper>
 				</LargeCard>
 			</LoginPageDiv>
 		);

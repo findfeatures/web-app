@@ -1,4 +1,4 @@
-import { Redirect, navigate } from "@reach/router";
+import { Redirect } from "@reach/router";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
@@ -8,6 +8,7 @@ import UnsupportedError from "../../components/UnsupportedError";
 import Dashboard from "../Dashboard";
 import FourOFour from "../FourOFour";
 import Login from "../Login";
+import SignUp from "../SignUp";
 import { StyledRouter } from "./Main.Style.js";
 
 class Main extends React.Component {
@@ -21,6 +22,7 @@ class Main extends React.Component {
 				<StyledRouter>
 					<Redirect from="/" to="/login" noThrow />
 					<Login path="/login" />
+					<SignUp path="/sign-up" />
 					{jwtToken ? <Dashboard path="/dashboard" /> : null}
 					<FourOFour path="/404" default />
 				</StyledRouter>

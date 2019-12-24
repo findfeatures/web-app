@@ -9,7 +9,7 @@ export const LoginPageDiv = styled.div`
 	flex-direction: column;
 `;
 
-export const ButtonWrapper = styled.div`
+export const RightButtonWrapper = styled.div`
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -33,12 +33,8 @@ export const FormWrapper = styled.div`
 
 	height: 65%;
 
-	background-color: white;
 	margin-top: 8%;
 
-	//box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
-	// -webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
-	// -moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 	position: relative;
 `;
 
@@ -72,5 +68,5 @@ export const StyledSignUpDiv = styled.div`
 	left: 0;
 	margin: 0 0 15px 25px;
 	font-weight: 500;
-	cursor: pointer;   
+	cursor: pointer;
 `;

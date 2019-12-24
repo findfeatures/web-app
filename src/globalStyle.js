@@ -6,7 +6,7 @@ export const createGlobalFeatureStyle = () => {
 		    background-color: #0055FE;
 		    color: #FFFFFF;
 		}
-		
+
 		#root {
 			height: 100%;
 			margin: 0px;
@@ -14,7 +14,7 @@ export const createGlobalFeatureStyle = () => {
 			background-color: #fafafa;
 			letter-spacing: 2px;
 		}
-		
+
 		* {
             font-family: HelveticaNowDisplay;
         }
