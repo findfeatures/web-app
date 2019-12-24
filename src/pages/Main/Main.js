@@ -6,6 +6,7 @@ import withSizes from "react-sizes";
 
 import UnsupportedError from "../../components/UnsupportedError";
 import Dashboard from "../Dashboard";
+import FourOFour from "../FourOFour";
 import Login from "../Login";
 import { StyledRouter } from "./Main.Style.js";
 
@@ -13,18 +14,15 @@ class Main extends React.Component {
 	render() {
 		const isSupportedScreenSize = this.props.isSupportedScreenSize;
 
-		const jwt_token = this.props.authData.JWT;
-
-		if (!jwt_token) {
-			navigate("/login");
-		}
+		const jwtToken = this.props.authData.JWT;
 
 		return (
 			<>
 				<StyledRouter>
 					<Redirect from="/" to="/login" noThrow />
 					<Login path="/login" />
-					<Dashboard path="/dashboard" />
+					{jwtToken ? <Dashboard path="/dashboard" /> : null}
+					<FourOFour path="/404" default />
 				</StyledRouter>
 				<UnsupportedError show={!isSupportedScreenSize} />
 			</>

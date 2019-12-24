@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 import BlockButton from "../../components/BlockButton";
 import Checkbox from "../../components/Checkbox";
+import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { authenticateUser } from "../../redux/actions/auth";
@@ -132,7 +133,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<LoginPageDiv>
-				<LoginCardDiv>
+				<LargeCard>
 					<LogoWrapper>Features</LogoWrapper>
 					<FormWrapper>
 						<LoginInput
@@ -173,7 +174,7 @@ class Login extends React.Component {
 							{this.state.loading ? <Spinner /> : "LOG IN"}
 						</BlockButton>
 					</ButtonWrapper>
-				</LoginCardDiv>
+				</LargeCard>
 			</LoginPageDiv>
 		);
 	}
