@@ -13,11 +13,11 @@ import {
 	ButtonWrapper,
 	ExtraDetailsDiv,
 	FormWrapper,
-	LoginCardDiv,
 	LoginPageDiv,
 	LogoWrapper,
 	StyledLabel,
 	StyledSpan,
+	StyledSignUpDiv
 } from "./Login.Style.js";
 
 class Login extends React.Component {
@@ -137,7 +137,7 @@ class Login extends React.Component {
 					<LogoWrapper>Features</LogoWrapper>
 					<FormWrapper>
 						<LoginInput
-							title={"Username"}
+							title={"Email"}
 							handleInputValueChange={this.handleUsernameInputValueChange}
 							inputValue={this.state.usernameInputValue}
 							showError={this.state.showUsernameError}
@@ -165,6 +165,10 @@ class Login extends React.Component {
 							<div>Forgot your password?</div>
 						</ExtraDetailsDiv>
 					</FormWrapper>
+
+					<StyledSignUpDiv>
+						Need an account? Sign up <b>here</b>!
+					</StyledSignUpDiv>
 
 					<ButtonWrapper>
 						<BlockButton

@@ -9,26 +9,6 @@ export const LoginPageDiv = styled.div`
 	flex-direction: column;
 `;
 
-export const LoginCardDiv = styled.div`
-	width: 85%;
-	min-width: 500px;
-	max-width: 800px;
-
-	height: 550px;
-
-	background-color: white;
-
-	box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
-	-webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
-	-moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
-	position: relative;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-`;
-
 export const ButtonWrapper = styled.div`
 	position: absolute;
 	bottom: 0;
@@ -84,4 +64,13 @@ export const ExtraDetailsDiv = styled.div`
 export const StyledSpan = styled.span`
 	margin-left: 10px;
 	font-weight: 600;
+`;
+
+export const StyledSignUpDiv = styled.div`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0 0 15px 25px;
+	font-weight: 500;
+	cursor: pointer;   
 `;
