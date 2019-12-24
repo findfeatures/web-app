@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { DashboardPageDiv } from "./Dashboard.Style.js";
+
 import { authenticateUser } from "../../redux/actions/auth";
+import { DashboardPageDiv } from "./Dashboard.Style.js";
 
 class Dashboard extends React.Component {
 	render() {
@@ -9,7 +10,9 @@ class Dashboard extends React.Component {
 			<DashboardPageDiv>
 				You're logged in!
 				<button
-					onClick={() => this.props.authenticateUser("calum@so-cal.co.uk", "passwor123d")}
+					onClick={() =>
+						this.props.authenticateUser("calum@so-cal.co.uk", "passwor123d")
+					}
 				>
 					CLICK ME TO AUTH!
 				</button>

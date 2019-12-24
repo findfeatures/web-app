@@ -1,11 +1,12 @@
+import PropTypes from "prop-types";
 import React from "react";
+
 import {
 	CheckboxContainer,
 	HiddenCheckbox,
-	StyledCheckbox,
 	Icon,
+	StyledCheckbox,
 } from "./Checkbox.Style.js";
-import PropTypes from "prop-types";
 
 class Checkbox extends React.PureComponent {
 	handleCheckChange = event => {

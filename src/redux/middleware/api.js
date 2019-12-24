@@ -1,6 +1,7 @@
 import axios from "axios";
+
+import { apiEnd, apiStart } from "../actions/index";
 import { API } from "../actions/types";
-import { apiStart, apiEnd } from "../actions/index";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "";
 
@@ -25,7 +26,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 	const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
 
 	if (!label) {
-		throw Error('label must be defined in apiMiddleware');
+		throw Error("label must be defined in apiMiddleware");
 	}
 
 	if (accessToken) {
@@ -52,9 +53,11 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 			[dataOrParams]: data,
 		})
 		.then(({ data }) => {
-			dispatch(apiEnd({
-				label
-			}));
+			dispatch(
+				apiEnd({
+					label,
+				}),
+			);
 
 			if (onSuccess) {
 				dispatch(onSuccess(data));
@@ -62,21 +65,25 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 		})
 		.catch(error => {
 			if (error.response && error.response.status) {
-				dispatch(apiEnd({
-					label,
-					statusCode: error.response.status,
-					error: error.response
-				}));
+				dispatch(
+					apiEnd({
+						label,
+						statusCode: error.response.status,
+						error: error.response,
+					}),
+				);
 			} else {
 				// default to status code 503 if dont get response back
 				// (can happen if cant connect to server)
-				dispatch(apiEnd({
-					label,
-					statusCode: 503,
-					error: {
-						message: 'Can\'t connect to server!'
-					}
-				}));
+				dispatch(
+					apiEnd({
+						label,
+						statusCode: 503,
+						error: {
+							message: "Can't connect to server!",
+						},
+					}),
+				);
 			}
 
 			if (onFailure) {

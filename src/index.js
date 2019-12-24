@@ -1,18 +1,24 @@
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import * as serviceWorker from "./serviceWorker";
-import { createStore, applyMiddleware } from "redux";
-import reducer from "./redux/reducers/index";
-import Main from "./pages/Main";
-import { createGlobalFeatureStyle } from "./globalStyle.js";
-import apiMiddleware from "./redux/middleware/api";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+import { createGlobalFeatureStyle } from "./globalStyle.js";
+import Main from "./pages/Main";
+import apiMiddleware from "./redux/middleware/api";
+import reducer from "./redux/reducers/index";
+import * as serviceWorker from "./serviceWorker";
 
 const GlobalStyle = createGlobalFeatureStyle();
 
-const store = createStore(reducer, {}, composeWithDevTools(applyMiddleware(apiMiddleware)));
+const store = createStore(
+	reducer,
+	{},
+	composeWithDevTools(applyMiddleware(apiMiddleware)),
+);
 
 ReactDOM.render(
 	<>

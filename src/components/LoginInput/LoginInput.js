@@ -1,12 +1,13 @@
-import React from "react";
-import {
-	MainDiv,
-	TitleDiv,
-	InputDiv,
-	StyledInput,
-	ErrorDiv,
-} from "./LoginInput.Style.js";
 import PropTypes from "prop-types";
+import React from "react";
+
+import {
+	ErrorDiv,
+	InputDiv,
+	MainDiv,
+	StyledInput,
+	TitleDiv,
+} from "./LoginInput.Style.js";
 
 class LoginInput extends React.PureComponent {
 	handleInputChange = event => {
@@ -36,7 +37,7 @@ LoginInput.defaultProps = {
 	showError: false,
 	errorMessage: "You have an error!",
 	handleInputValueChange: () => {},
-	disabled: false
+	disabled: false,
 };
 
 LoginInput.propTypes = {
@@ -46,7 +47,7 @@ LoginInput.propTypes = {
 	type: PropTypes.string,
 	showError: PropTypes.bool,
 	errorMessage: PropTypes.string,
-	disabled: PropTypes.bool
+	disabled: PropTypes.bool,
 };
 
 export default LoginInput;

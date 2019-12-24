@@ -1,15 +1,15 @@
 import {
-	API_START,
 	API_END,
-	SET_JWT_TOKEN,
+	API_START,
 	AUTHENTICATE_USER,
+	SET_JWT_TOKEN,
 } from "../actions/types";
 
 const initialState = {
 	isAuthenticatingUser: false,
 	data: {},
 	statusCode: null,
-	error: null
+	error: null,
 };
 
 export default function auth(state = initialState, action) {
@@ -35,7 +35,7 @@ export default function auth(state = initialState, action) {
 					...state,
 					isAuthenticatingUser: false,
 					statusCode: action.statusCode,
-					error: action.error
+					error: action.error,
 				};
 			}
 			break;

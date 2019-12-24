@@ -1,4 +1,4 @@
-import { API, API_START, API_END } from "./types";
+import { API, API_END, API_START } from "./types";
 
 export function apiAction({
 	url = "",
@@ -30,11 +30,11 @@ export const apiStart = label => ({
 	payload: label,
 });
 
-export const apiEnd = ({label, statusCode = 200, error = null}) => {
+export const apiEnd = ({ label, statusCode = 200, error = null }) => {
 	return {
 		type: API_END,
 		payload: label,
 		statusCode,
-		error
-	}
+		error,
+	};
 };

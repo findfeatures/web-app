@@ -1,11 +1,12 @@
+import PropTypes from "prop-types";
 import React from "react";
 import ReactDOM from "react-dom";
+
 import {
 	FullScreenCenteredDiv,
-	Wrapper,
 	LogoDiv,
+	Wrapper,
 } from "./UnsupportedError.Style.js";
-import PropTypes from "prop-types";
 
 class UnsupportedError extends React.PureComponent {
 	render() {
