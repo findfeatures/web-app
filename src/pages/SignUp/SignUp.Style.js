@@ -48,7 +48,7 @@ export const SignUpDiv = styled.div`
 
 export const StyledTitle = styled.div`
 	position: absolute;
-	top: ${props => (props.top ? props.top : '55px')};
+	top: ${props => (props.top ? props.top : "55px")};
 	width: 100%;
 	text-align: center;
 	font-weight: 700;
@@ -57,7 +57,7 @@ export const StyledTitle = styled.div`
 
 export const StyledFooter = styled.div`
 	position: absolute;
-	bottom: ${props => props.bottom ? props.bottom : '10px'}
+	bottom: ${props => (props.bottom ? props.bottom : "10px")}
 	width: 100%;
 	text-align: center;
 	font-weight: 500;

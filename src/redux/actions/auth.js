@@ -1,6 +1,6 @@
+import { auth_user_api } from "../../api";
 import { apiAction } from "./index";
 import { AUTHENTICATE_USER, SET_JWT_TOKEN } from "./types";
-import { auth_user_api } from '../../api';
 
 export const authenticateUser = (email, password) =>
 	apiAction({

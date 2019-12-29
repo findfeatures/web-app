@@ -1,8 +1,8 @@
+import { check_user_api } from "../../api";
 import { apiAction } from "./index";
 import { CHECK_IF_USER_EXISTS, USER_EXISTS } from "./types";
-import { check_user_api } from '../../api';
 
-export const checkIfUserExists = (email) =>
+export const checkIfUserExists = email =>
 	apiAction({
 		url: check_user_api.url,
 		method: check_user_api.method,

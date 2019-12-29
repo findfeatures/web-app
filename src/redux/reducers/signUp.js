@@ -1,15 +1,11 @@
-import {
-	API_END,
-	API_START,
-	CHECK_IF_USER_EXISTS,
-} from "../actions/types";
+import { API_END, API_START, CHECK_IF_USER_EXISTS } from "../actions/types";
 
 const initialState = {
 	isCheckingIfUserExists: false,
 	checkIfUserExists: {
 		statusCode: null,
 		error: null,
-	}
+	},
 };
 
 export default function signUp(state = initialState, action) {
@@ -32,7 +28,7 @@ export default function signUp(state = initialState, action) {
 					checkIfUserExists: {
 						statusCode: action.statusCode,
 						error: action.error,
-					}
+					},
 				};
 			}
 			break;

@@ -10,9 +10,9 @@ import {
 	RightButtonWrapper,
 	SignUpDiv,
 	SignUpPageDiv,
-	StyledTitle,
 	StyledFooter,
 	StyledSpan,
+	StyledTitle,
 	TitleWrapper,
 } from "./SignUp.Style.js";
 
@@ -288,7 +288,9 @@ class SignUp extends React.Component {
 
 		return (
 			<>
-				<StyledTitle top={'15px'}>Time to think of something secure</StyledTitle>
+				<StyledTitle top={"15px"}>
+					Time to think of something secure
+				</StyledTitle>
 				<LoginInput
 					title={"Password"}
 					type={"password"}
@@ -306,7 +308,7 @@ class SignUp extends React.Component {
 					errorMessage={this.state.repeatPasswordErrorMessage}
 				/>
 				{this.state.passwordInputValue && (
-					<StyledFooter bottom={'-5px'}>
+					<StyledFooter bottom={"-5px"}>
 						Password Strength:{" "}
 						<StyledSpan color={passwordScore < 2 ? "red" : "green"}>
 							<i>{passwordStrengthText}</i>
