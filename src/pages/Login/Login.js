@@ -81,7 +81,6 @@ class Login extends React.Component {
 	};
 
 	validateUsernameInput = () => {
-		// check if username is empty (spaces = empty)
 		if (this.state.usernameInputValue.replace(/\s/g, "") === "") {
 			this.setState({
 				usernameErrorMessage: "Username is required.",
@@ -101,7 +100,6 @@ class Login extends React.Component {
 	};
 
 	validatePasswordInput = () => {
-		// check if username is empty (spaces = empty)
 		if (this.state.passwordInputValue === "") {
 			this.setState({
 				passwordErrorMessage: "Password is required.",

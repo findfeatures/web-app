@@ -21,7 +21,8 @@
     "react-tiny-popover": "^3.4.5",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

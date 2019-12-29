@@ -35,3 +35,36 @@ export const TitleWrapper = styled.div`
 	font-weight: 900;
 	font-size: 40px;
 `;
+
+export const SignUpDiv = styled.div`
+	width: 65%;
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+`;
+
+export const StyledTitle = styled.div`
+	position: absolute;
+	top: ${props => (props.top ? props.top : '55px')};
+	width: 100%;
+	text-align: center;
+	font-weight: 700;
+	font-size: 25px;
+`;
+
+export const StyledFooter = styled.div`
+	position: absolute;
+	bottom: ${props => props.bottom ? props.bottom : '10px'}
+	width: 100%;
+	text-align: center;
+	font-weight: 500;
+	font-size: 15px;
+`;
+
+export const StyledSpan = styled.span`
+	color: ${props => props.color};
+	font-weight: 900;
+`;

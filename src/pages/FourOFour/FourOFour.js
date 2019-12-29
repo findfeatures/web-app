@@ -13,6 +13,8 @@ class FourOFour extends React.Component {
 		"Oops... looks like you got lost.",
 		"You weren't supposed to see this!",
 		"Nothing to see here!",
+		"There's been a glitch!",
+		"Someones getting fired for this.",
 	];
 
 	handleButtonClick = () => {
