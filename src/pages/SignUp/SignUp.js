@@ -6,12 +6,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import zxcvbn from "zxcvbn";
 
+import mailSvg from "../../assets/svgs/mail.svg";
 import BlockButton from "../../components/BlockButton";
 import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
+	CenterButtonWrapper,
 	LeftButtonWrapper,
 	RightButtonWrapper,
 	SignUpCompleteDiv,
@@ -470,12 +472,23 @@ class SignUp extends React.PureComponent {
 		return (
 			<>
 				<TitleWrapper>Sign Up Complete!</TitleWrapper>
+				<img
+					src={mailSvg}
+					width={256}
+					style={{ margin: 10 }}
+					alt={"large email icon"}
+				/>
 
 				<SignUpCompleteDiv>
 					Be on the look out for an email in your inbox to verify your email
 					address.
 					<br />
 				</SignUpCompleteDiv>
+				<CenterButtonWrapper>
+					<BlockButton handleButtonClick={() => navigate("/login")}>
+						LOGIN
+					</BlockButton>
+				</CenterButtonWrapper>
 			</>
 		);
 	};

@@ -25,6 +25,13 @@ export const RightButtonWrapper = styled.div`
 	width: 180px;
 `;
 
+export const CenterButtonWrapper = styled.div`
+	height: 65px;
+	width: 180px;
+	position: absolute;
+	bottom: 20px;
+`;
+
 export const TitleWrapper = styled.div`
 	position: absolute;
 	top: 15px;
@@ -76,4 +83,6 @@ export const SignUpCompleteDiv = styled.div`
 	justify-content: center;
 	align-items: center;
 	position: relative;
+	text-align: center;
+	margin-top: 20px;
 `;
