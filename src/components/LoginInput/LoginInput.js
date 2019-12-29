@@ -6,7 +6,7 @@ import {
 	InputDiv,
 	MainDiv,
 	StyledInput,
-	TitleDiv,
+	TitleLabel,
 } from "./LoginInput.Style.js";
 
 class LoginInput extends React.PureComponent {
@@ -17,7 +17,7 @@ class LoginInput extends React.PureComponent {
 	render() {
 		return (
 			<MainDiv>
-				<TitleDiv>{this.props.title}</TitleDiv>
+				<TitleLabel>{this.props.title}</TitleLabel>
 				<InputDiv>
 					<StyledInput
 						onChange={this.handleInputChange}

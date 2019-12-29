@@ -7,7 +7,7 @@ export const MainDiv = styled.div`
 	position: relative;
 `;
 
-export const TitleDiv = styled.div`
+export const TitleLabel = styled.label`
 	position: absolute;
 	top: 25px;
 	left: 25px;
