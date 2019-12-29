@@ -136,7 +136,7 @@ class Login extends React.Component {
 		return (
 			<LoginPageDiv>
 				<LargeCard>
-					<LogoWrapper>Features</LogoWrapper>
+					<LogoWrapper>Find Features</LogoWrapper>
 					<FormWrapper>
 						<LoginInput
 							title={"Email"}

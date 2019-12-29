@@ -1,10 +1,16 @@
 import { navigate } from "@reach/router";
+import PropTypes from "prop-types";
 import React from "react";
+import { connect } from "react-redux";
 import zxcvbn from "zxcvbn";
 
 import BlockButton from "../../components/BlockButton";
 import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
+import Modal from "../../components/Modal";
+
+import Spinner from "../../components/Spinner";
+import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
 	LeftButtonWrapper,
 	RightButtonWrapper,
@@ -16,10 +22,17 @@ import {
 	TitleWrapper,
 } from "./SignUp.Style.js";
 
+
 class SignUp extends React.Component {
 	state = {
 		currentScreenIndex: 0,
-		lastScreenIndex: 3,
+		lastScreenIndex: 2,
+
+		checkingIfUserExists: false,
+
+		isSigningUpUser: false,
+
+		showModal: false,
 
 		// display name
 		displayNameInputValue: "",
@@ -44,6 +57,57 @@ class SignUp extends React.Component {
 		showRepeatPasswordError: false,
 	};
 
+	componentDidUpdate(prevProps) {
+		const checkingIfUserExists =
+			this.props.isCheckingIfUserExists !== prevProps.isCheckingIfUserExists &&
+			this.props.isCheckingIfUserExists;
+		const finishedCheckingIfUserExists =
+			this.props.isCheckingIfUserExists !== prevProps.isCheckingIfUserExists &&
+			prevProps.isCheckingIfUserExists;
+
+		if (checkingIfUserExists) {
+			this.setState({
+				checkingIfUserExists: true,
+			});
+		}
+
+		if (finishedCheckingIfUserExists) {
+			if (this.props.checkIfUserExistsStatusCode === 200) {
+				this.setState(prevState => ({
+					checkingIfUserExists: false,
+					currentScreenIndex: prevState.currentScreenIndex + 1,
+				}));
+			} else {
+				this.setState({
+					checkingIfUserExists: false,
+					emailErrorMessage: "Email already exists!",
+					showEmailError: true,
+				});
+			}
+		}
+
+		const isSigningUpUser = this.props.isSigningUpUser !== prevProps.isSigningUpUser &&
+			this.props.isSigningUpUser;
+		const finishedSigningUpUser =
+			this.props.isSigningUpUser !== prevProps.isSigningUpUser &&
+			prevProps.isSigningUpUser;
+
+		if (isSigningUpUser) {
+			this.setState({
+				isSigningUpUser: true
+			})
+		}
+
+		if (finishedSigningUpUser) {
+			// currently dont support any errors here...
+			this.setState({
+				isSigningUpUser: false
+			}, () => {
+				navigate('/email-verification');
+			})
+		}
+	}
+
 	handleBackClicked = () => {
 		if (this.state.currentScreenIndex !== 0) {
 			this.setState(prevState => ({
@@ -55,37 +119,37 @@ class SignUp extends React.Component {
 	};
 
 	handleNextClicked = () => {
-		if (this.state.currentScreenIndex !== this.state.lastScreenIndex) {
-			switch (this.state.currentScreenIndex) {
-				case 0:
-					if (this.validateDisplayNameInput()) {
-						return;
-					}
-					break;
-				case 1:
-					if (this.validateEmailInput()) {
-						return;
-					}
+		switch (this.state.currentScreenIndex) {
+			case 0:
+				if (this.validateDisplayNameInput()) {
+					return;
+				}
+				break;
+			case 1:
+				if (this.validateEmailInput()) {
+					return;
+				}
 
-					// todo: check if the email exists
+				this.props.checkIfUserExists(this.state.emailInputValue);
 
-					break;
-				case 2:
-					if (
-						this.validatePasswordInput() ||
-						this.validateRepeatPasswordInput()
-					) {
-						return;
-					}
-					break;
-				default:
-					console.log("something?");
-			}
+				return;
+			case 2:
+				if (
+					this.validatePasswordInput() ||
+					this.validateRepeatPasswordInput()
+				) {
+					return;
+				}
 
-			this.setState(prevState => ({
-				currentScreenIndex: prevState.currentScreenIndex + 1,
-			}));
+				this.props.signUpUser(this.state.displayNameInputValue, this.state.emailInputValue, this.state.passwordInputValue);
+				return;
+			default:
+				return;
 		}
+
+		this.setState(prevState => ({
+			currentScreenIndex: prevState.currentScreenIndex + 1,
+		}));
 	};
 
 	handleDisplayNameInputValueChange = val => {
@@ -354,7 +418,7 @@ class SignUp extends React.Component {
 					</LeftButtonWrapper>
 					<RightButtonWrapper>
 						<BlockButton handleButtonClick={this.handleNextClicked}>
-							NEXT
+							{this.state.checkingIfUserExists || this.state.isSigningUpUser ? <Spinner /> : (this.state.currentScreenIndex === this.state.lastScreenIndex ? "SIGN UP": "NEXT")}
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
@@ -363,8 +427,40 @@ class SignUp extends React.Component {
 	}
 }
 
-SignUp.defaultProps = {};
+SignUp.defaultProps = {
+	isCheckingIfUserExists: false,
+	checkIfUserExistsStatusCode: 200,
+	checkIfUserExists: () => {},
 
-SignUp.propTypes = {};
+	isSigningUpUser: false,
+	signUpUserStatusCode: 200,
+	signUpUser: () => {}
+};
 
-export default SignUp;
+SignUp.propTypes = {
+	isCheckingIfUserExists: PropTypes.bool,
+	checkIfUserExistsStatusCode: PropTypes.number,
+	checkIfUserExists: PropTypes.func,
+
+	isSigningUpUser: PropTypes.bool,
+	signUpUserStatusCode: PropTypes.number,
+	signUpUser: PropTypes.func
+};
+
+const mapStateToProps = reduxState => {
+	return {
+		isCheckingIfUserExists: reduxState.signUp.isCheckingIfUserExists,
+		checkIfUserExistsStatusCode: reduxState.signUp.checkIfUserExists.statusCode,
+
+		isSigningUpUser: reduxState.signUp.isSigningUpUser,
+		signUpUserStatusCode: reduxState.signUp.signUp.statusCode
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	{
+		checkIfUserExists,
+		signUpUser
+	},
+)(SignUp);

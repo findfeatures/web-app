@@ -14,7 +14,7 @@ export const authenticateUser = (email, password) =>
 		label: AUTHENTICATE_USER,
 	});
 
-function setJWTToken(data) {
+const setJWTToken = (data) => {
 	return {
 		type: SET_JWT_TOKEN,
 		payload: data,

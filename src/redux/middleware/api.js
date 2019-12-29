@@ -3,8 +3,6 @@ import axios from "axios";
 import { apiEnd, apiStart } from "../actions/index";
 import { API } from "../actions/types";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "";
-
 const defaultHeaders = {};
 let headers = { ...defaultHeaders };
 
@@ -23,6 +21,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 		label,
 		headersOverride,
 	} = action.payload;
+
 	const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
 
 	if (!label) {
@@ -32,7 +31,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 	if (accessToken) {
 		headers = {
 			...headers,
-			Authorization: `Bearer ${accessToken}`,
+			Authorization: `${accessToken}`,
 		};
 	}
 
@@ -47,7 +46,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 
 	axios
 		.request({
-			url: `${BASE_URL}${url}`,
+			url: `${url}`,
 			method,
 			headers,
 			[dataOrParams]: data,

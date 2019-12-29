@@ -1,6 +1,6 @@
 import { API, API_END, API_START } from "./types";
 
-export function apiAction({
+export const apiAction = ({
 	url = "",
 	method = "GET",
 	data = null,
@@ -9,7 +9,7 @@ export function apiAction({
 	onFailure = null,
 	label = "",
 	headersOverride = null,
-}) {
+}) => {
 	return {
 		type: API,
 		payload: {
