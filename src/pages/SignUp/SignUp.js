@@ -7,7 +7,6 @@ import zxcvbn from "zxcvbn";
 import BlockButton from "../../components/BlockButton";
 import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
-import Modal from "../../components/Modal";
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
@@ -29,8 +28,6 @@ class SignUp extends React.Component {
 		checkingIfUserExists: false,
 
 		isSigningUpUser: false,
-
-		showModal: false,
 
 		// display name
 		displayNameInputValue: "",
