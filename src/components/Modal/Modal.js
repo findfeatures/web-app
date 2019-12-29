@@ -2,12 +2,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {
-	StyledDiv,
-} from "./Modal.Style.js";
+import { StyledDiv } from "./Modal.Style.js";
 
 class Modal extends React.PureComponent {
-
 	render() {
 		if (this.props.blur) {
 			document.getElementById("root").style.filter = "blur(20px)";
@@ -19,9 +16,7 @@ class Modal extends React.PureComponent {
 		return (
 			this.props.show &&
 			ReactDOM.createPortal(
-				<StyledDiv>
-					{ this.props.children }
-				</StyledDiv>,
+				<StyledDiv>{this.props.children}</StyledDiv>,
 				document.getElementById("portal"),
 			)
 		);
@@ -30,13 +25,13 @@ class Modal extends React.PureComponent {
 
 Modal.defaultProps = {
 	show: false,
-	blur: false
+	blur: false,
 };
 
 Modal.propTypes = {
 	show: PropTypes.bool.isRequired,
 	children: PropTypes.node,
-	blur: PropTypes.bool
+	blur: PropTypes.bool,
 };
 
 export default Modal;

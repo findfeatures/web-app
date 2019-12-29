@@ -8,7 +8,6 @@ import BlockButton from "../../components/BlockButton";
 import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
 import Modal from "../../components/Modal";
-
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
@@ -21,7 +20,6 @@ import {
 	StyledTitle,
 	TitleWrapper,
 } from "./SignUp.Style.js";
-
 
 class SignUp extends React.Component {
 	state = {
@@ -86,7 +84,8 @@ class SignUp extends React.Component {
 			}
 		}
 
-		const isSigningUpUser = this.props.isSigningUpUser !== prevProps.isSigningUpUser &&
+		const isSigningUpUser =
+			this.props.isSigningUpUser !== prevProps.isSigningUpUser &&
 			this.props.isSigningUpUser;
 		const finishedSigningUpUser =
 			this.props.isSigningUpUser !== prevProps.isSigningUpUser &&
@@ -94,17 +93,20 @@ class SignUp extends React.Component {
 
 		if (isSigningUpUser) {
 			this.setState({
-				isSigningUpUser: true
-			})
+				isSigningUpUser: true,
+			});
 		}
 
 		if (finishedSigningUpUser) {
 			// currently dont support any errors here...
-			this.setState({
-				isSigningUpUser: false
-			}, () => {
-				navigate('/email-verification');
-			})
+			this.setState(
+				{
+					isSigningUpUser: false,
+				},
+				() => {
+					navigate("/email-verification");
+				},
+			);
 		}
 	}
 
@@ -141,7 +143,11 @@ class SignUp extends React.Component {
 					return;
 				}
 
-				this.props.signUpUser(this.state.displayNameInputValue, this.state.emailInputValue, this.state.passwordInputValue);
+				this.props.signUpUser(
+					this.state.displayNameInputValue,
+					this.state.emailInputValue,
+					this.state.passwordInputValue,
+				);
 				return;
 			default:
 				return;
@@ -418,7 +424,14 @@ class SignUp extends React.Component {
 					</LeftButtonWrapper>
 					<RightButtonWrapper>
 						<BlockButton handleButtonClick={this.handleNextClicked}>
-							{this.state.checkingIfUserExists || this.state.isSigningUpUser ? <Spinner /> : (this.state.currentScreenIndex === this.state.lastScreenIndex ? "SIGN UP": "NEXT")}
+							{this.state.checkingIfUserExists || this.state.isSigningUpUser ? (
+								<Spinner />
+							) : this.state.currentScreenIndex ===
+							  this.state.lastScreenIndex ? (
+								"SIGN UP"
+							) : (
+								"NEXT"
+							)}
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
@@ -434,7 +447,7 @@ SignUp.defaultProps = {
 
 	isSigningUpUser: false,
 	signUpUserStatusCode: 200,
-	signUpUser: () => {}
+	signUpUser: () => {},
 };
 
 SignUp.propTypes = {
@@ -444,7 +457,7 @@ SignUp.propTypes = {
 
 	isSigningUpUser: PropTypes.bool,
 	signUpUserStatusCode: PropTypes.number,
-	signUpUser: PropTypes.func
+	signUpUser: PropTypes.func,
 };
 
 const mapStateToProps = reduxState => {
@@ -453,7 +466,7 @@ const mapStateToProps = reduxState => {
 		checkIfUserExistsStatusCode: reduxState.signUp.checkIfUserExists.statusCode,
 
 		isSigningUpUser: reduxState.signUp.isSigningUpUser,
-		signUpUserStatusCode: reduxState.signUp.signUp.statusCode
+		signUpUserStatusCode: reduxState.signUp.signUp.statusCode,
 	};
 };
 
@@ -461,6 +474,6 @@ export default connect(
 	mapStateToProps,
 	{
 		checkIfUserExists,
-		signUpUser
+		signUpUser,
 	},
 )(SignUp);

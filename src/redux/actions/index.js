@@ -23,7 +23,7 @@ export const apiAction = ({
 			headersOverride,
 		},
 	};
-}
+};
 
 export const apiStart = label => ({
 	type: API_START,

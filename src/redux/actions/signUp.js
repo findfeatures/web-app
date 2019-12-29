@@ -15,8 +15,8 @@ export const signUpUser = (displayName, email, password) =>
 		data: {
 			display_name: displayName,
 			email: email,
-			password: password
+			password: password,
 		},
 		method: sign_up_user_api.method,
-		label: SIGN_UP_USER
+		label: SIGN_UP_USER,
 	});

@@ -1,13 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {
-	LogoDiv,
-	Wrapper
-} from "./UnsupportedError.Style.js";
-
-import Modal from '../Modal';
-
+import Modal from "../Modal";
+import { LogoDiv, Wrapper } from "./UnsupportedError.Style.js";
 
 class UnsupportedError extends React.PureComponent {
 	render() {

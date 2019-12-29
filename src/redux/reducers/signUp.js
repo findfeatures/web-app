@@ -1,4 +1,9 @@
-import {API_END, API_START, CHECK_IF_USER_EXISTS, SIGN_UP_USER} from "../actions/types";
+import {
+	API_END,
+	API_START,
+	CHECK_IF_USER_EXISTS,
+	SIGN_UP_USER,
+} from "../actions/types";
 
 const initialState = {
 	isCheckingIfUserExists: false,
@@ -11,7 +16,7 @@ const initialState = {
 	signUp: {
 		statusCode: null,
 		error: null,
-	}
+	},
 };
 
 export default function signUp(state = initialState, action) {
@@ -28,8 +33,8 @@ export default function signUp(state = initialState, action) {
 			if (payload === SIGN_UP_USER) {
 				return {
 					...state,
-					isSigningUpUser: true
-				}
+					isSigningUpUser: true,
+				};
 			}
 			break;
 		case API_END:
@@ -51,7 +56,7 @@ export default function signUp(state = initialState, action) {
 						statusCode: action.statusCode,
 						error: action.error,
 					},
-				}
+				};
 			}
 			break;
 		default:
