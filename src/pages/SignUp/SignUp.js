@@ -9,6 +9,7 @@ import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
 	LeftButtonWrapper,
 	RightButtonWrapper,
@@ -20,14 +21,16 @@ import {
 	TitleWrapper,
 } from "./SignUp.Style.js";
 
-class SignUp extends React.Component {
+class SignUp extends React.PureComponent {
 	state = {
 		currentScreenIndex: 0,
-		lastScreenIndex: 2,
+		lastScreenIndex: 3,
 
 		checkingIfUserExists: false,
 
 		isSigningUpUser: false,
+
+		captchaPassed: false,
 
 		// display name
 		displayNameInputValue: "",
@@ -146,11 +149,15 @@ class SignUp extends React.Component {
 					return;
 				}
 
-				this.props.signUpUser(
-					this.state.displayNameInputValue,
-					this.state.emailInputValue,
-					this.state.passwordInputValue,
-				);
+				break;
+			case 3:
+				if (this.state.captchaPassed) {
+					this.props.signUpUser(
+						this.state.displayNameInputValue,
+						this.state.emailInputValue,
+						this.state.passwordInputValue,
+					);
+				}
 				return;
 			default:
 				return;
@@ -158,6 +165,7 @@ class SignUp extends React.Component {
 
 		this.setState(prevState => ({
 			currentScreenIndex: prevState.currentScreenIndex + 1,
+			captchaPassed: false
 		}));
 	};
 
@@ -380,16 +388,37 @@ class SignUp extends React.Component {
 					showError={this.state.showRepeatPasswordError}
 					errorMessage={this.state.repeatPasswordErrorMessage}
 				/>
-				{this.state.passwordInputValue && (
-					<StyledFooter bottom={"-5px"}>
-						Password Strength:{" "}
-						<StyledSpan color={passwordScore < 2 ? "red" : "green"}>
-							<i>{passwordStrengthText}</i>
-						</StyledSpan>
-					</StyledFooter>
-				)}
+				<StyledFooter bottom={"-5px"}>
+					Password Strength:{" "}
+					<StyledSpan color={passwordScore < 2 ? "red" : "green"}>
+						<i>{passwordStrengthText}</i>
+					</StyledSpan>
+				</StyledFooter>
 			</>
 		);
+	};
+
+	handleRecaptchaChange = () => {
+		this.setState({
+			captchaPassed: true
+		})
+	};
+
+	renderRobotCheckScreen = () => {
+		return (
+			<>
+				<StyledTitle top={"15px"}>
+					Finally, are you a robot?
+				</StyledTitle>
+				<ReCAPTCHA
+					sitekey={ process.env.REACT_APP_RECAPTCHA_SITE_KEY }
+					onChange={this.handleRecaptchaChange}
+				/>
+				<StyledFooter>
+					Robophobia: The irrational fear of Robots!
+				</StyledFooter>
+			</>
+		)
 	};
 
 	switchScreen = currScreen => {
@@ -403,6 +432,9 @@ class SignUp extends React.Component {
 			case 2:
 				// Password
 				return this.renderPasswordScreen();
+			case 3:
+				// Robot check
+				return this.renderRobotCheckScreen();
 			default:
 				navigate("/404");
 		}
@@ -412,11 +444,6 @@ class SignUp extends React.Component {
 		const screen = this.switchScreen(this.state.currentScreenIndex);
 
 		return <SignUpDiv>{screen}</SignUpDiv>;
-	};
-
-	verifyRecaptchaCallback = (recaptchaToken) => {
-		// Here you will get the final recaptchaToken!!!
-		console.log(recaptchaToken, "<= your recaptcha token")
 	};
 
 	render() {
