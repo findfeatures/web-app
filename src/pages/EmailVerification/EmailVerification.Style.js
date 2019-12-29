@@ -28,3 +28,14 @@ export const StyledFooter = styled.div`
 	justify-content: center;
 	flex-direction: column;
 `;
+
+export const LogoWrapper = styled.div`
+	font-size: 40px;
+	font-weight: 900;
+	top: 15px;
+	position: absolute;
+`;
+
+export const StyledH3 = styled.h3`
+	font-size: 30px;
+`;

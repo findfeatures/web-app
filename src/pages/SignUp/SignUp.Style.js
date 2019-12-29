@@ -68,3 +68,12 @@ export const StyledSpan = styled.span`
 	color: ${props => props.color};
 	font-weight: 900;
 `;
+
+export const SignUpCompleteDiv = styled.div`
+	width: 65%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+`;

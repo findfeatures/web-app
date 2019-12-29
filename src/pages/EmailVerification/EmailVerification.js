@@ -11,7 +11,9 @@ import { verifyEmail } from "../../redux/actions/signUp";
 import {
 	ButtonWrapper,
 	EmailVerificationPage,
+	LogoWrapper,
 	StyledFooter,
+	StyledH3,
 } from "./EmailVerification.Style.js";
 
 class EmailVerification extends React.PureComponent {
@@ -82,24 +84,18 @@ class EmailVerification extends React.PureComponent {
 		return (
 			<EmailVerificationPage>
 				<LargeCard>
-					<div
-						style={{
-							fontSize: "40px",
-							fontWeight: 900,
-							top: "15px",
-							position: "absolute",
-						}}
-					>
-						Find Features
-					</div>
-					<h3 style={{ fontSize: "30px" }}>
+					<LogoWrapper>Find Features</LogoWrapper>
+					<StyledH3>
 						{activating
 							? "Your account is being activated!"
 							: "Your account is ready!"}
-					</h3>
+					</StyledH3>
 
 					<ButtonWrapper>
-						<BlockButton handleButtonClick={this.handleButtonClick}>
+						<BlockButton
+							handleButtonClick={this.handleButtonClick}
+							disabled={this.state.verifyingEmail}
+						>
 							{this.state.verifyingEmail ? <Spinner /> : "BACK TO LOGIN"}
 						</BlockButton>
 					</ButtonWrapper>

@@ -1,5 +1,6 @@
 import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
+import * as queryString from "query-string";
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
@@ -13,6 +14,7 @@ import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
 	LeftButtonWrapper,
 	RightButtonWrapper,
+	SignUpCompleteDiv,
 	SignUpDiv,
 	SignUpPageDiv,
 	StyledFooter,
@@ -24,7 +26,7 @@ import {
 class SignUp extends React.PureComponent {
 	state = {
 		currentScreenIndex: 0,
-		lastScreenIndex: 3,
+		lastScreenIndex: 4,
 
 		checkingIfUserExists: false,
 
@@ -105,14 +107,10 @@ class SignUp extends React.PureComponent {
 
 		if (finishedSigningUpUser) {
 			// currently dont support any errors here...
-			this.setState(
-				{
-					isSigningUpUser: false,
-				},
-				() => {
-					navigate("/email-verification");
-				},
-			);
+			this.setState(prevState => ({
+				isSigningUpUser: false,
+				currentScreenIndex: prevState.lastScreenIndex,
+			}));
 		}
 	}
 
@@ -439,32 +437,60 @@ class SignUp extends React.PureComponent {
 	renderScreen = () => {
 		const screen = this.switchScreen(this.state.currentScreenIndex);
 
-		return <SignUpDiv>{screen}</SignUpDiv>;
+		return (
+			<>
+				<TitleWrapper>Sign Up</TitleWrapper>
+				<SignUpDiv>{screen}</SignUpDiv>
+				<LeftButtonWrapper>
+					<BlockButton handleButtonClick={this.handleBackClicked}>
+						{this.state.currentScreenIndex !== 0 ? "BACK" : "LOGIN"}
+					</BlockButton>
+				</LeftButtonWrapper>
+				<RightButtonWrapper>
+					<BlockButton
+						handleButtonClick={this.handleNextClicked}
+						disabled={
+							this.state.checkingIfUserExists || this.state.isSigningUpUser
+						}
+					>
+						{this.state.checkingIfUserExists || this.state.isSigningUpUser ? (
+							<Spinner />
+						) : this.state.currentScreenIndex === this.state.lastScreenIndex ? (
+							"SIGN UP"
+						) : (
+							"NEXT"
+						)}
+					</BlockButton>
+				</RightButtonWrapper>
+			</>
+		);
+	};
+
+	renderFinalScreen = () => {
+		return (
+			<>
+				<TitleWrapper>Sign Up Complete!</TitleWrapper>
+
+				<SignUpCompleteDiv>
+					Be on the look out for an email in your inbox to verify your email
+					address.
+					<br />
+				</SignUpCompleteDiv>
+			</>
+		);
 	};
 
 	render() {
+		// only used when debugging! (e.g. ?screen=4)
+		const queryParams = queryString.parse(this.props.location.search);
+
+		const showSignUpFinished =
+			this.state.currentScreenIndex === this.state.lastScreenIndex ||
+			queryParams.screen === this.state.lastScreenIndex.toString();
 		return (
 			<SignUpPageDiv>
 				<LargeCard>
-					<TitleWrapper>Sign Up</TitleWrapper>
-					{this.renderScreen()}
-					<LeftButtonWrapper>
-						<BlockButton handleButtonClick={this.handleBackClicked}>
-							{this.state.currentScreenIndex !== 0 ? "BACK" : "LOGIN"}
-						</BlockButton>
-					</LeftButtonWrapper>
-					<RightButtonWrapper>
-						<BlockButton handleButtonClick={this.handleNextClicked}>
-							{this.state.checkingIfUserExists || this.state.isSigningUpUser ? (
-								<Spinner />
-							) : this.state.currentScreenIndex ===
-							  this.state.lastScreenIndex ? (
-								"SIGN UP"
-							) : (
-								"NEXT"
-							)}
-						</BlockButton>
-					</RightButtonWrapper>
+					{showSignUpFinished ? this.renderFinalScreen() : this.renderScreen()}
 				</LargeCard>
 			</SignUpPageDiv>
 		);
