@@ -6,6 +6,7 @@ import withSizes from "react-sizes";
 
 import UnsupportedError from "../../components/UnsupportedError";
 import Dashboard from "../Dashboard";
+import EmailVerification from "../EmailVerification";
 import FourOFour from "../FourOFour";
 import Login from "../Login";
 import SignUp from "../SignUp";
@@ -23,6 +24,7 @@ class Main extends React.Component {
 					<Redirect from="/" to="/login" noThrow />
 					<Login path="/login" />
 					<SignUp path="/sign-up" />
+					<EmailVerification path="/email-verification" />
 					{jwtToken ? <Dashboard path="/dashboard" /> : null}
 					<FourOFour path="/404" default />
 				</StyledRouter>

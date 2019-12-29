@@ -1,6 +1,10 @@
-import { check_user_api, sign_up_user_api } from "../../api";
+import {
+	check_user_api,
+	sign_up_user_api,
+	verify_email_user_api,
+} from "../../api";
 import { apiAction } from "./index";
-import { CHECK_IF_USER_EXISTS, SIGN_UP_USER } from "./types";
+import { CHECK_IF_USER_EXISTS, SIGN_UP_USER, VERIFY_EMAIL } from "./types";
 
 export const checkIfUserExists = email =>
 	apiAction({
@@ -19,4 +23,15 @@ export const signUpUser = (displayName, email, password) =>
 		},
 		method: sign_up_user_api.method,
 		label: SIGN_UP_USER,
+	});
+
+export const verifyEmail = (email, token) =>
+	apiAction({
+		url: verify_email_user_api.url,
+		data: {
+			email: email,
+			token: token,
+		},
+		method: verify_email_user_api.method,
+		label: VERIFY_EMAIL,
 	});

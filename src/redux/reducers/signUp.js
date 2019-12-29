@@ -3,6 +3,7 @@ import {
 	API_START,
 	CHECK_IF_USER_EXISTS,
 	SIGN_UP_USER,
+	VERIFY_EMAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +15,12 @@ const initialState = {
 
 	isSigningUpUser: false,
 	signUp: {
+		statusCode: null,
+		error: null,
+	},
+
+	isVerifyingEmail: false,
+	verifyEmail: {
 		statusCode: null,
 		error: null,
 	},
@@ -36,6 +43,12 @@ export default function signUp(state = initialState, action) {
 					isSigningUpUser: true,
 				};
 			}
+			if (payload === VERIFY_EMAIL) {
+				return {
+					...state,
+					isVerifyingEmail: true,
+				};
+			}
 			break;
 		case API_END:
 			if (payload === CHECK_IF_USER_EXISTS) {
@@ -53,6 +66,16 @@ export default function signUp(state = initialState, action) {
 					...state,
 					isSigningUpUser: false,
 					signUp: {
+						statusCode: action.statusCode,
+						error: action.error,
+					},
+				};
+			}
+			if (payload === VERIFY_EMAIL) {
+				return {
+					...state,
+					isVerifyingEmail: false,
+					verifyEmail: {
 						statusCode: action.statusCode,
 						error: action.error,
 					},

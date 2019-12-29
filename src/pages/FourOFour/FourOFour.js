@@ -3,7 +3,11 @@ import React from "react";
 
 import BlockButton from "../../components/BlockButton";
 import LargeCard from "../../components/LargeCard";
-import { FourOFourPageDiv } from "./FourOFour.Style.js";
+import {
+	ButtonWrapper,
+	FourOFourPageDiv,
+	StyledH1,
+} from "./FourOFour.Style.js";
 
 class FourOFour extends React.Component {
 	lostMessages = [
@@ -29,13 +33,13 @@ class FourOFour extends React.Component {
 		return (
 			<FourOFourPageDiv>
 				<LargeCard>
-					<h1 style={{ fontSize: "200px", margin: 0 }}>404</h1>
+					<StyledH1>404</StyledH1>
 					<h2>{message}</h2>
-					<div style={{ width: 250, height: 75, marginTop: 20 }}>
+					<ButtonWrapper>
 						<BlockButton handleButtonClick={this.handleButtonClick}>
 							TAKE ME HOME
 						</BlockButton>
-					</div>
+					</ButtonWrapper>
 				</LargeCard>
 			</FourOFourPageDiv>
 		);

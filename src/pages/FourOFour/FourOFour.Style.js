@@ -8,3 +8,14 @@ export const FourOFourPageDiv = styled.div`
 	justify-content: center;
 	flex-direction: column;
 `;
+
+export const StyledH1 = styled.h1`
+	font-size: 200px;
+	margin: 0px;
+`;
+
+export const ButtonWrapper = styled.div`
+	width: 250px;
+	height: 75px;
+	margin-top: 20px;
+`;

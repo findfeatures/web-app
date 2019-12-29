@@ -20,7 +20,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 		onFailure,
 		label,
 		headersOverride,
-		timeout
+		timeout,
 	} = action.payload;
 
 	const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";

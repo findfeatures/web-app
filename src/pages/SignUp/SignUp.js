@@ -1,6 +1,7 @@
 import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
 import React from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import zxcvbn from "zxcvbn";
 
@@ -9,7 +10,6 @@ import LargeCard from "../../components/LargeCard";
 import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
-import ReCAPTCHA from "react-google-recaptcha";
 import {
 	LeftButtonWrapper,
 	RightButtonWrapper,
@@ -165,7 +165,7 @@ class SignUp extends React.PureComponent {
 
 		this.setState(prevState => ({
 			currentScreenIndex: prevState.currentScreenIndex + 1,
-			captchaPassed: false
+			captchaPassed: false,
 		}));
 	};
 
@@ -400,25 +400,21 @@ class SignUp extends React.PureComponent {
 
 	handleRecaptchaChange = () => {
 		this.setState({
-			captchaPassed: true
-		})
+			captchaPassed: true,
+		});
 	};
 
 	renderRobotCheckScreen = () => {
 		return (
 			<>
-				<StyledTitle top={"15px"}>
-					Finally, are you a robot?
-				</StyledTitle>
+				<StyledTitle top={"15px"}>Finally, are you a robot?</StyledTitle>
 				<ReCAPTCHA
-					sitekey={ process.env.REACT_APP_RECAPTCHA_SITE_KEY }
+					sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
 					onChange={this.handleRecaptchaChange}
 				/>
-				<StyledFooter>
-					Robophobia: The irrational fear of Robots!
-				</StyledFooter>
+				<StyledFooter>Robophobia: The irrational fear of Robots!</StyledFooter>
 			</>
-		)
+		);
 	};
 
 	switchScreen = currScreen => {
