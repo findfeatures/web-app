@@ -63,6 +63,12 @@ class Login extends React.Component {
 				showPasswordError: true,
 				passwordErrorMessage: "Can't connect to server! Please retry.",
 			});
+		} else if (statusCode === 418) {
+			// i'm a teapot (418) = email exists but not verified
+			this.setState({
+				showPasswordError: true,
+				passwordErrorMessage: "Please verify your email first.",
+			});
 		} else {
 			// we could handle different codes here a bit better
 			// (e.g. 500 "internal server error" or 401 "not authorised")

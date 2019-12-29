@@ -8,6 +8,7 @@ export const apiAction = ({
 	onSuccess = null,
 	onFailure = null,
 	label = "",
+	timeout = 30000,
 	headersOverride = null,
 }) => {
 	return {
@@ -20,6 +21,7 @@ export const apiAction = ({
 			onSuccess,
 			onFailure,
 			label,
+			timeout,
 			headersOverride,
 		},
 	};

@@ -72,6 +72,12 @@ class SignUp extends React.Component {
 					checkingIfUserExists: false,
 					currentScreenIndex: prevState.currentScreenIndex + 1,
 				}));
+			} else if (this.props.checkIfUserExistsStatusCode === 503) {
+				this.setState({
+					checkingIfUserExists: false,
+					emailErrorMessage: "Can't connect to server! Please retry.",
+					showEmailError: true,
+				});
 			} else {
 				this.setState({
 					checkingIfUserExists: false,
@@ -406,6 +412,11 @@ class SignUp extends React.Component {
 		const screen = this.switchScreen(this.state.currentScreenIndex);
 
 		return <SignUpDiv>{screen}</SignUpDiv>;
+	};
+
+	verifyRecaptchaCallback = (recaptchaToken) => {
+		// Here you will get the final recaptchaToken!!!
+		console.log(recaptchaToken, "<= your recaptcha token")
 	};
 
 	render() {
