@@ -13,6 +13,7 @@ const initialState = {
 };
 
 const setJwtToken = (state, action) => {
+	// localStorage.setItem('JWT_TOKEN', action.pay)
 	return {
 		...state,
 		data: action.payload,
@@ -43,12 +44,12 @@ export default function auth(state = initialState, action) {
 			return setJwtToken(state, action);
 		case API_START:
 			if (payload === AUTHENTICATE_USER) {
-				apiStartAuthenticateUser(state, action);
+				return apiStartAuthenticateUser(state, action);
 			}
 			break;
 		case API_END:
 			if (payload === AUTHENTICATE_USER) {
-				apiEndAuthenticateUser(state, action);
+				return apiEndAuthenticateUser(state, action);
 			}
 			break;
 		default:

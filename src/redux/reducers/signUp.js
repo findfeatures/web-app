@@ -86,24 +86,24 @@ export default function signUp(state = initialState, action) {
 	switch (action.type) {
 		case API_START:
 			if (payload === CHECK_IF_USER_EXISTS) {
-				apiStartCheckIfUserExists(state, action);
+				return apiStartCheckIfUserExists(state, action);
 			}
 			if (payload === SIGN_UP_USER) {
-				apiStartSignUpUser(state, action);
+				return apiStartSignUpUser(state, action);
 			}
 			if (payload === VERIFY_EMAIL) {
-				apiStartVerifyEmail(state, action);
+				return apiStartVerifyEmail(state, action);
 			}
 			break;
 		case API_END:
 			if (payload === CHECK_IF_USER_EXISTS) {
-				apiEndCheckIfUserExists(state, action);
+				return apiEndCheckIfUserExists(state, action);
 			}
 			if (payload === SIGN_UP_USER) {
-				apiEndSignUpUser(state, action);
+				return apiEndSignUpUser(state, action);
 			}
 			if (payload === VERIFY_EMAIL) {
-				apiEndVerifyEmail(state, action);
+				return apiEndVerifyEmail(state, action);
 			}
 			break;
 		default:
