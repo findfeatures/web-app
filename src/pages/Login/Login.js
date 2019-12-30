@@ -54,6 +54,20 @@ class Login extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		document.addEventListener("keydown", this.handleKeyDown);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener("keydown", this.handleKeyDown);
+	}
+
+	handleKeyDown = event => {
+		if (event.key === "Enter") {
+			this.handleLoginClicked();
+		}
+	};
+
 	handleFinishedAuthenticationUser = statusCode => {
 		if (statusCode === 200) {
 			navigate("/dashboard");
@@ -81,9 +95,7 @@ class Login extends React.Component {
 	};
 
 	handleEmailInputValueChange = val => {
-		this.setState({ emailInputValue: val }, () =>
-			this.validateEmailInput(),
-		);
+		this.setState({ emailInputValue: val }, () => this.validateEmailInput());
 	};
 
 	validateEmailInput = () => {

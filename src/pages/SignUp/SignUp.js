@@ -116,6 +116,20 @@ class SignUp extends React.PureComponent {
 		}
 	}
 
+	componentDidMount() {
+		document.addEventListener("keydown", this.handleKeyDown);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener("keydown", this.handleKeyDown);
+	}
+
+	handleKeyDown = event => {
+		if (event.key === "Enter") {
+			this.handleNextClicked();
+		}
+	};
+
 	handleBackClicked = () => {
 		if (this.state.currentScreenIndex !== 0) {
 			this.setState(prevState => ({

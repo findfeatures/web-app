@@ -16,7 +16,7 @@ class Main extends React.Component {
 	render() {
 		const isSupportedScreenSize = this.props.isSupportedScreenSize;
 
-		const jwtToken = localStorage.getItem('JWT_TOKEN');
+		const jwtToken = localStorage.getItem("JWT_TOKEN");
 
 		return (
 			<>

@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const setJwtToken = (state, action) => {
-	localStorage.setItem('JWT_TOKEN', action.payload.jwt);
+	localStorage.setItem("JWT_TOKEN", action.payload.jwt);
 	return {
 		...state,
 	};
