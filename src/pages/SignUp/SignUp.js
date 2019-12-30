@@ -8,8 +8,8 @@ import zxcvbn from "zxcvbn";
 
 import mailSvg from "../../assets/svgs/mail.svg";
 import BlockButton from "../../components/BlockButton";
+import Input from "../../components/Input";
 import LargeCard from "../../components/LargeCard";
-import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
@@ -326,7 +326,7 @@ class SignUp extends React.PureComponent {
 		return (
 			<>
 				<StyledTitle>What can we call you?</StyledTitle>
-				<LoginInput
+				<Input
 					title={"Display Name"}
 					handleInputValueChange={this.handleDisplayNameInputValueChange}
 					inputValue={this.state.displayNameInputValue}
@@ -348,7 +348,7 @@ class SignUp extends React.PureComponent {
 					Great! <i>{this.state.displayNameInputValue}</i> where can we reach
 					you?
 				</StyledTitle>
-				<LoginInput
+				<Input
 					title={"Email Address"}
 					handleInputValueChange={this.handleEmailInputValueChange}
 					inputValue={this.state.emailInputValue}
@@ -372,7 +372,7 @@ class SignUp extends React.PureComponent {
 				<StyledTitle top={"15px"}>
 					Time to think of something secure
 				</StyledTitle>
-				<LoginInput
+				<Input
 					title={"Password"}
 					type={"password"}
 					handleInputValueChange={this.handlePasswordInputValueChange}
@@ -380,7 +380,7 @@ class SignUp extends React.PureComponent {
 					showError={this.state.showPasswordError}
 					errorMessage={this.state.passwordErrorMessage}
 				/>
-				<LoginInput
+				<Input
 					title={"Repeat Password"}
 					type={"password"}
 					handleInputValueChange={this.handleRepeatPasswordInputValueChange}

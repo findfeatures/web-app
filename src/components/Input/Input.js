@@ -7,9 +7,9 @@ import {
 	MainDiv,
 	StyledInput,
 	TitleLabel,
-} from "./LoginInput.Style.js";
+} from "./Input.Style.js";
 
-class LoginInput extends React.PureComponent {
+class Input extends React.PureComponent {
 	handleInputChange = event => {
 		this.props.handleInputValueChange(event.target.value);
 	};
@@ -32,7 +32,7 @@ class LoginInput extends React.PureComponent {
 	}
 }
 
-LoginInput.defaultProps = {
+Input.defaultProps = {
 	type: "text",
 	showError: false,
 	errorMessage: "You have an error!",
@@ -40,7 +40,7 @@ LoginInput.defaultProps = {
 	disabled: false,
 };
 
-LoginInput.propTypes = {
+Input.propTypes = {
 	title: PropTypes.string.isRequired,
 	inputValue: PropTypes.string.isRequired,
 	handleInputValueChange: PropTypes.func,
@@ -50,4 +50,4 @@ LoginInput.propTypes = {
 	disabled: PropTypes.bool,
 };
 
-export default LoginInput;
+export default Input;

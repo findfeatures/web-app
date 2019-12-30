@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 
 import BlockButton from "../../components/BlockButton";
 import Checkbox from "../../components/Checkbox";
+import Input from "../../components/Input";
 import LargeCard from "../../components/LargeCard";
-import LoginInput from "../../components/LoginInput";
 import Spinner from "../../components/Spinner";
 import { authenticateUser } from "../../redux/actions/auth";
 import {
@@ -144,7 +144,7 @@ class Login extends React.Component {
 				<LargeCard>
 					<LogoWrapper>Find Features</LogoWrapper>
 					<FormWrapper>
-						<LoginInput
+						<Input
 							title={"Email"}
 							handleInputValueChange={this.handleUsernameInputValueChange}
 							inputValue={this.state.usernameInputValue}
@@ -152,7 +152,7 @@ class Login extends React.Component {
 							errorMessage={this.state.usernameErrorMessage}
 							disabled={this.state.loading}
 						/>
-						<LoginInput
+						<Input
 							title={"Password"}
 							type={"password"}
 							handleInputValueChange={this.handlePasswordInputValueChange}
