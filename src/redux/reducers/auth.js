@@ -12,31 +12,43 @@ const initialState = {
 	error: null,
 };
 
+const setJwtToken = (state, action) => {
+	return {
+		...state,
+		data: action.payload,
+	};
+};
+
+const apiStartAuthenticateUser = (state, action) => {
+	return {
+		...state,
+		isAuthenticatingUser: true,
+	};
+};
+
+const apiEndAuthenticateUser = (state, action) => {
+	return {
+		...state,
+		isAuthenticatingUser: false,
+		statusCode: action.statusCode,
+		error: action.error,
+	};
+};
+
 export default function auth(state = initialState, action) {
 	const payload = action.payload;
 
 	switch (action.type) {
 		case SET_JWT_TOKEN:
-			return {
-				...state,
-				data: action.payload,
-			};
+			return setJwtToken(state, action);
 		case API_START:
 			if (payload === AUTHENTICATE_USER) {
-				return {
-					...state,
-					isAuthenticatingUser: true,
-				};
+				apiStartAuthenticateUser(state, action);
 			}
 			break;
 		case API_END:
 			if (payload === AUTHENTICATE_USER) {
-				return {
-					...state,
-					isAuthenticatingUser: false,
-					statusCode: action.statusCode,
-					error: action.error,
-				};
+				apiEndAuthenticateUser(state, action);
 			}
 			break;
 		default:

@@ -26,60 +26,84 @@ const initialState = {
 	},
 };
 
+const apiStartCheckIfUserExists = (state, action) => {
+	return {
+		...state,
+		isCheckingIfUserExists: true,
+	};
+};
+
+const apiStartSignUpUser = (state, action) => {
+	return {
+		...state,
+		isSigningUpUser: true,
+	};
+};
+
+const apiStartVerifyEmail = (state, action) => {
+	return {
+		...state,
+		isVerifyingEmail: true,
+	};
+};
+
+const apiEndCheckIfUserExists = (state, action) => {
+	return {
+		...state,
+		isCheckingIfUserExists: false,
+		checkIfUserExists: {
+			statusCode: action.statusCode,
+			error: action.error,
+		},
+	};
+};
+
+const apiEndSignUpUser = (state, action) => {
+	return {
+		...state,
+		isSigningUpUser: false,
+		signUp: {
+			statusCode: action.statusCode,
+			error: action.error,
+		},
+	};
+};
+
+const apiEndVerifyEmail = (state, action) => {
+	return {
+		...state,
+		isVerifyingEmail: false,
+		verifyEmail: {
+			statusCode: action.statusCode,
+			error: action.error,
+		},
+	};
+};
+
 export default function signUp(state = initialState, action) {
 	const payload = action.payload;
 
 	switch (action.type) {
 		case API_START:
 			if (payload === CHECK_IF_USER_EXISTS) {
-				return {
-					...state,
-					isCheckingIfUserExists: true,
-				};
+				apiStartCheckIfUserExists(state, action);
 			}
 			if (payload === SIGN_UP_USER) {
-				return {
-					...state,
-					isSigningUpUser: true,
-				};
+				apiStartSignUpUser(state, action);
 			}
 			if (payload === VERIFY_EMAIL) {
-				return {
-					...state,
-					isVerifyingEmail: true,
-				};
+				apiStartVerifyEmail(state, action);
 			}
 			break;
 		case API_END:
 			if (payload === CHECK_IF_USER_EXISTS) {
-				return {
-					...state,
-					isCheckingIfUserExists: false,
-					checkIfUserExists: {
-						statusCode: action.statusCode,
-						error: action.error,
-					},
-				};
+				apiEndCheckIfUserExists(state, action);
 			}
 			if (payload === SIGN_UP_USER) {
-				return {
-					...state,
-					isSigningUpUser: false,
-					signUp: {
-						statusCode: action.statusCode,
-						error: action.error,
-					},
-				};
+				apiEndSignUpUser(state, action);
 			}
 			if (payload === VERIFY_EMAIL) {
-				return {
-					...state,
-					isVerifyingEmail: false,
-					verifyEmail: {
-						statusCode: action.statusCode,
-						error: action.error,
-					},
-				};
+				apiEndVerifyEmail(state, action);
 			}
 			break;
 		default:

@@ -167,7 +167,7 @@ class Login extends React.Component {
 									checked={this.state.staySignedInChecked}
 									onCheckChange={this.handleStaySignedInCheckChange}
 								/>
-								<StyledSpan>Stay Signed In</StyledSpan>
+								<StyledSpan>Remember me</StyledSpan>
 							</StyledLabel>
 
 							<div>Forgot your password?</div>
