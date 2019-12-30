@@ -22,15 +22,15 @@ import {
 
 class Login extends React.Component {
 	state = {
-		usernameInputValue: "",
-		usernameErrorMessage: "",
-		showUsernameError: false,
+		emailInputValue: "",
+		emailErrorMessage: "",
+		showEmailError: false,
 
 		passwordInputValue: "",
 		passwordErrorMessage: "",
 		showPasswordError: false,
 
-		staySignedInChecked: false,
+		rememberMeChecked: false,
 
 		loading: false,
 	};
@@ -80,21 +80,21 @@ class Login extends React.Component {
 		this.setState({ loading: false });
 	};
 
-	handleUsernameInputValueChange = val => {
-		this.setState({ usernameInputValue: val }, () =>
-			this.validateUsernameInput(),
+	handleEmailInputValueChange = val => {
+		this.setState({ emailInputValue: val }, () =>
+			this.validateEmailInput(),
 		);
 	};
 
-	validateUsernameInput = () => {
-		if (this.state.usernameInputValue.replace(/\s/g, "") === "") {
+	validateEmailInput = () => {
+		if (this.state.emailInputValue.replace(/\s/g, "") === "") {
 			this.setState({
-				usernameErrorMessage: "Username is required.",
-				showUsernameError: true,
+				emailErrorMessage: "Email is required.",
+				showEmailError: true,
 			});
 			return true;
 		} else {
-			this.setState({ usernameErrorMessage: "", showUsernameError: false });
+			this.setState({ emailErrorMessage: "", showEmailError: false });
 			return false;
 		}
 	};
@@ -119,19 +119,19 @@ class Login extends React.Component {
 	};
 
 	handleLoginClicked = () => {
-		const usernameError = this.validateUsernameInput();
+		const emailError = this.validateEmailInput();
 		const passwordError = this.validatePasswordInput();
 
-		if (!usernameError && !passwordError) {
+		if (!emailError && !passwordError) {
 			this.props.authenticateUser(
-				this.state.usernameInputValue,
+				this.state.emailInputValue,
 				this.state.passwordInputValue,
 			);
 		}
 	};
 
-	handleStaySignedInCheckChange = val => {
-		this.setState({ staySignedInChecked: val });
+	handleRememberMeChecked = val => {
+		this.setState({ rememberMeChecked: val });
 	};
 
 	handleSignUpClicked = () => {
@@ -146,10 +146,10 @@ class Login extends React.Component {
 					<FormWrapper>
 						<Input
 							title={"Email"}
-							handleInputValueChange={this.handleUsernameInputValueChange}
-							inputValue={this.state.usernameInputValue}
-							showError={this.state.showUsernameError}
-							errorMessage={this.state.usernameErrorMessage}
+							handleInputValueChange={this.handleEmailInputValueChange}
+							inputValue={this.state.emailInputValue}
+							showError={this.state.showEmailError}
+							errorMessage={this.state.emailErrorMessage}
 							disabled={this.state.loading}
 						/>
 						<Input
@@ -164,8 +164,8 @@ class Login extends React.Component {
 						<ExtraDetailsDiv>
 							<StyledLabel>
 								<Checkbox
-									checked={this.state.staySignedInChecked}
-									onCheckChange={this.handleStaySignedInCheckChange}
+									checked={this.state.rememberMeChecked}
+									onCheckChange={this.handleRememberMeChecked}
 								/>
 								<StyledSpan>Remember me</StyledSpan>
 							</StyledLabel>

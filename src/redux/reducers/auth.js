@@ -7,16 +7,14 @@ import {
 
 const initialState = {
 	isAuthenticatingUser: false,
-	data: {},
 	statusCode: null,
 	error: null,
 };
 
 const setJwtToken = (state, action) => {
-	// localStorage.setItem('JWT_TOKEN', action.pay)
+	localStorage.setItem('JWT_TOKEN', action.payload.jwt);
 	return {
 		...state,
-		data: action.payload,
 	};
 };
 

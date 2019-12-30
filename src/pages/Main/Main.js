@@ -16,7 +16,7 @@ class Main extends React.Component {
 	render() {
 		const isSupportedScreenSize = this.props.isSupportedScreenSize;
 
-		const jwtToken = this.props.authData.JWT;
+		const jwtToken = localStorage.getItem('JWT_TOKEN');
 
 		return (
 			<>
@@ -25,7 +25,7 @@ class Main extends React.Component {
 					<Login path="/login" />
 					<SignUp path="/sign-up" />
 					<EmailVerification path="/email-verification" />
-					{jwtToken ? <Dashboard path="/dashboard" /> : null}
+					{jwtToken !== null ? <Dashboard path="/dashboard" /> : null}
 					<FourOFour path="/404" default />
 				</StyledRouter>
 				<UnsupportedError show={!isSupportedScreenSize} />
@@ -36,9 +36,6 @@ class Main extends React.Component {
 
 Main.propTypes = {
 	isSupportedScreenSize: PropTypes.bool,
-	authData: PropTypes.shape({
-		JWT: PropTypes.string,
-	}),
 };
 
 const mapSizesToProps = ({ width, height }) => ({
@@ -46,9 +43,7 @@ const mapSizesToProps = ({ width, height }) => ({
 });
 
 const mapStateToProps = reduxState => {
-	return {
-		authData: reduxState.auth.data,
-	};
+	return {};
 };
 
 export default connect(
