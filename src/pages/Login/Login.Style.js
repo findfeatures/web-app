@@ -18,7 +18,6 @@ export const RightButtonWrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-	cursor: pointer;
 	position: absolute;
 	top: 15px;
 	height: 65px;
