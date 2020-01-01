@@ -11,7 +11,7 @@ class UnsupportedErrorModal extends React.PureComponent {
 				<Wrapper>
 					<LogoDiv>Find Features</LogoDiv>
 					We currently <i>do not</i> support screen sizes this small :( (if
-					possible) please enlarge the size of your screen to at least{" "}
+					possible) please enlarge the size of your screen to at least
 					<i>1000px x 600px</i> or try rotating your device. <br />
 					<br />
 					If you think this is an error, please contact us directly at
