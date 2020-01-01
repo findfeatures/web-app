@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import Modal from "../Modal";
-import { LogoDiv, Wrapper } from "./UnsupportedError.Style.js";
+import { LogoDiv, Wrapper } from "./UnsupportedErrorModal.Style.js";
 
-class UnsupportedError extends React.PureComponent {
+class UnsupportedErrorModal extends React.PureComponent {
 	render() {
 		return (
 			<Modal show={this.props.show} blur={this.props.show}>
@@ -22,8 +22,8 @@ class UnsupportedError extends React.PureComponent {
 	}
 }
 
-UnsupportedError.propTypes = {
+UnsupportedErrorModal.propTypes = {
 	show: PropTypes.bool.isRequired,
 };
 
-export default UnsupportedError;
+export default UnsupportedErrorModal;

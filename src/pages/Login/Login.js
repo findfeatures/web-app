@@ -19,6 +19,8 @@ import {
 	StyledSignUpDiv,
 	StyledSpan,
 } from "./Login.Style.js";
+import LoginVerificationModal from '../../components/LoginVerificationModal';
+
 
 class Login extends React.Component {
 	state = {
@@ -33,6 +35,8 @@ class Login extends React.Component {
 		rememberMeChecked: false,
 
 		loading: false,
+
+		showVerificationModel: false
 	};
 
 	componentDidUpdate(prevProps) {
@@ -78,10 +82,11 @@ class Login extends React.Component {
 				passwordErrorMessage: "Can't connect to server! Please retry.",
 			});
 		} else if (statusCode === 418) {
-			// i'm a teapot (418) = email exists but not verified
+			// I'm a teapot (418) = email exists but not verified
 			this.setState({
 				showPasswordError: true,
 				passwordErrorMessage: "Please verify your email first.",
+				showVerificationModel: true
 			});
 		} else {
 			// we could handle different codes here a bit better
@@ -199,6 +204,7 @@ class Login extends React.Component {
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
+
 			</LoginPageDiv>
 		);
 	}
