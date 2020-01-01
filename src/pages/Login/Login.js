@@ -19,8 +19,6 @@ import {
 	StyledSignUpDiv,
 	StyledSpan,
 } from "./Login.Style.js";
-import LoginVerificationModal from '../../components/LoginVerificationModal';
-
 
 class Login extends React.Component {
 	state = {
@@ -36,7 +34,7 @@ class Login extends React.Component {
 
 		loading: false,
 
-		showVerificationModel: false
+		showVerificationModel: false,
 	};
 
 	componentDidUpdate(prevProps) {
@@ -86,7 +84,7 @@ class Login extends React.Component {
 			this.setState({
 				showPasswordError: true,
 				passwordErrorMessage: "Please verify your email first.",
-				showVerificationModel: true
+				showVerificationModel: true,
 			});
 		} else {
 			// we could handle different codes here a bit better
@@ -204,7 +202,6 @@ class Login extends React.Component {
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
-
 			</LoginPageDiv>
 		);
 	}

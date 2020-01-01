@@ -17,13 +17,14 @@ class Modal extends React.PureComponent {
 			this.props.show &&
 			ReactDOM.createPortal(
 				<StyledDiv>{this.props.children}</StyledDiv>,
-				document.getElementById("portal"),
+				document.getElementById(this.props.portalId),
 			)
 		);
 	}
 }
 
 Modal.defaultProps = {
+	portalId: "",
 	show: false,
 	blur: false,
 };
@@ -32,6 +33,7 @@ Modal.propTypes = {
 	show: PropTypes.bool.isRequired,
 	children: PropTypes.node,
 	blur: PropTypes.bool,
+	portalId: PropTypes.string,
 };
 
 export default Modal;

@@ -7,7 +7,7 @@ import { LogoDiv, Wrapper } from "./UnsupportedErrorModal.Style.js";
 class UnsupportedErrorModal extends React.PureComponent {
 	render() {
 		return (
-			<Modal show={this.props.show} blur={this.props.show}>
+			<Modal show={this.props.show} blur={this.props.show} portalId={"overlay"}>
 				<Wrapper>
 					<LogoDiv>Find Features</LogoDiv>
 					We currently <i>do not</i> support screen sizes this small :( (if
