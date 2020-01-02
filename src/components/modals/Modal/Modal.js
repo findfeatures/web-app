@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import ReactModal from "react-modal";
 
-// import { StyledDiv } from "./Modal.Style.js";
-
 const customStyles = {
 	content: {
 		top: "50%",
