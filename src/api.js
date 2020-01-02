@@ -20,3 +20,8 @@ export const verify_email_user_api = {
 	url: `${BASE_URL}/v1/user-token`,
 	method: "POST",
 };
+
+export const resend_email_user_api = {
+	url: `${BASE_URL}/v1/resend-email`,
+	method: "POST",
+};

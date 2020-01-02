@@ -8,8 +8,9 @@ import LargeCard from "../../components/cards/LargeCard";
 import Checkbox from "../../components/inputs/Checkbox";
 import Input from "../../components/inputs/Input";
 import Spinner from "../../components/miscellaneous/Spinner";
-import Modal from "../../components/modals/Modal";
+import LoginVerificationModal from "../../components/modals/LoginVerificationModal";
 import { authenticateUser } from "../../redux/actions/auth";
+import { resendEmail } from "../../redux/actions/signUp";
 import {
 	ExtraDetailsDiv,
 	FormWrapper,
@@ -36,6 +37,7 @@ class Login extends React.Component {
 		loading: false,
 
 		showVerificationModel: false,
+		emailResendingLoading: false,
 	};
 
 	componentDidUpdate(prevProps) {
@@ -165,9 +167,16 @@ class Login extends React.Component {
 	};
 
 	setShowVerificationModal = val => {
-		this.setState({
-			showVerificationModel: val,
-		});
+		// don't allow the modal to shut if the request is still processing.
+		if (!this.props.isResendingEmail) {
+			this.setState({
+				showVerificationModel: val,
+			});
+		}
+	};
+
+	onEmailResend = () => {
+		this.props.resendEmail(this.state.emailInputValue);
 	};
 
 	render() {
@@ -212,19 +221,19 @@ class Login extends React.Component {
 
 					<RightButtonWrapper>
 						<BlockButton
-							handleButtonClick={this.handleLoginClicked}
+							onClickHandler={this.handleLoginClicked}
 							disabled={this.state.loading}
 						>
 							{this.state.loading ? <Spinner /> : "LOG IN"}
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
-				<Modal
+				<LoginVerificationModal
 					isOpen={this.state.showVerificationModel}
 					onRequestClose={() => this.setShowVerificationModal(false)}
-				>
-					<div style={{ width: "400px", height: "300px" }}> im a test !</div>
-				</Modal>
+					onConfirm={this.onEmailResend}
+					confirmLoading={this.props.isResendingEmail}
+				/>
 			</LoginPageDiv>
 		);
 	}
@@ -234,18 +243,23 @@ Login.defaultProps = {
 	isAuthenticatingUser: false,
 	statusCode: 200,
 	authenticateUser: () => {},
+	isResendingEmail: false,
+	resendEmail: () => {},
 };
 
 Login.propTypes = {
 	isAuthenticatingUser: PropTypes.bool,
 	statusCode: PropTypes.number,
 	authenticateUser: PropTypes.func,
+	isResendingEmail: PropTypes.bool,
+	resendEmail: PropTypes.func,
 };
 
 const mapStateToProps = reduxState => {
 	return {
 		isAuthenticatingUser: reduxState.auth.isAuthenticatingUser,
 		statusCode: reduxState.auth.statusCode,
+		isResendingEmail: reduxState.signUp.isResendingEmail,
 	};
 };
 
@@ -253,5 +267,6 @@ export default connect(
 	mapStateToProps,
 	{
 		authenticateUser,
+		resendEmail,
 	},
 )(Login);

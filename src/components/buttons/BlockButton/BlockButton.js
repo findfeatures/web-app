@@ -7,7 +7,7 @@ class BlockButton extends React.PureComponent {
 	render() {
 		return (
 			<StyledButton
-				onClick={this.props.handleButtonClick}
+				onClick={this.props.onClickHandler}
 				disabled={this.props.disabled}
 			>
 				{this.props.children}
@@ -17,12 +17,12 @@ class BlockButton extends React.PureComponent {
 }
 
 BlockButton.defaultProps = {
-	handleButtonClick: () => {},
+	onClickHandler: () => {},
 	disabled: false,
 };
 
 BlockButton.propTypes = {
-	handleButtonClick: PropTypes.func,
+	onClickHandler: PropTypes.func,
 	disabled: PropTypes.bool,
 };
 

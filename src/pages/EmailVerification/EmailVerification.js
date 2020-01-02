@@ -24,7 +24,7 @@ class EmailVerification extends React.PureComponent {
 		errorMessage: "",
 	};
 
-	handleButtonClick = () => {
+	onClickHandler = () => {
 		// todo: send verification!
 		navigate("/login");
 	};
@@ -93,7 +93,7 @@ class EmailVerification extends React.PureComponent {
 
 					<ButtonWrapper>
 						<BlockButton
-							handleButtonClick={this.handleButtonClick}
+							onClickHandler={this.onClickHandler}
 							disabled={this.state.verifyingEmail}
 						>
 							{this.state.verifyingEmail ? <Spinner /> : "BACK TO LOGIN"}

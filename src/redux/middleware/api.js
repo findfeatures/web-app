@@ -11,6 +11,10 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 
 	if (action.type !== API) return;
 
+	sendRequest({ dispatch, action });
+};
+
+const sendRequest = ({ dispatch, action, retries = 0 }) => {
 	const {
 		url,
 		method,
@@ -66,6 +70,16 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 		})
 		.catch(error => {
 			if (error.response && error.response.status) {
+				if (error.response.status === 429) {
+					console.log("attempting to re-request as rate limit reached");
+					// rate limit, retry the request again in 1 second
+					setTimeout(function() {
+						console.log("requesting as rate limit reached", retries + 1);
+						sendRequest({ dispatch, action, retries: retries + 1 });
+					}, 1000 * retries * 2);
+					return;
+				}
+
 				dispatch(
 					apiEnd({
 						label,

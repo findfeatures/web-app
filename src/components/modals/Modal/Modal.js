@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import ReactModal from "react-modal";
 
+import xMark from "../../../assets/svgs/x-mark.svg";
+import { CloseButton } from "./Modal.Style.js";
+
 const customStyles = {
 	content: {
 		top: "50%",
@@ -10,7 +13,8 @@ const customStyles = {
 		bottom: "auto",
 		marginRight: "-50%",
 		transform: "translate(-50%, -50%)",
-		border: "none",
+		border: "",
+		padding: "0",
 		backgroundColor: "white",
 		boxShadow: "0px 0px 67px 0px rgba(0, 0, 0, 0.19)",
 		borderRadius: "0",
@@ -33,6 +37,11 @@ class Modal extends React.PureComponent {
 				onRequestClose={this.onRequestClose}
 				ariaHideApp={false}
 			>
+				<CloseButton
+					src={xMark}
+					alt={"close modal"}
+					onClick={this.onRequestClose}
+				/>
 				{this.props.children}
 			</ReactModal>
 		);

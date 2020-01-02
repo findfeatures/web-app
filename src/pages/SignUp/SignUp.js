@@ -458,13 +458,13 @@ class SignUp extends React.PureComponent {
 				<TitleWrapper>Sign Up</TitleWrapper>
 				<SignUpDiv>{screen}</SignUpDiv>
 				<LeftButtonWrapper>
-					<BlockButton handleButtonClick={this.handleBackClicked}>
+					<BlockButton onClickHandler={this.handleBackClicked}>
 						{this.state.currentScreenIndex !== 0 ? "BACK" : "LOGIN"}
 					</BlockButton>
 				</LeftButtonWrapper>
 				<RightButtonWrapper>
 					<BlockButton
-						handleButtonClick={this.handleNextClicked}
+						onClickHandler={this.handleNextClicked}
 						disabled={
 							this.state.checkingIfUserExists || this.state.isSigningUpUser
 						}
@@ -499,7 +499,7 @@ class SignUp extends React.PureComponent {
 					<br />
 				</SignUpCompleteDiv>
 				<CenterButtonWrapper>
-					<BlockButton handleButtonClick={() => navigate("/login")}>
+					<BlockButton onClickHandler={() => navigate("/login")}>
 						LOGIN
 					</BlockButton>
 				</CenterButtonWrapper>

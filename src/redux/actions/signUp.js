@@ -1,10 +1,16 @@
 import {
 	check_user_api,
+	resend_email_user_api,
 	sign_up_user_api,
 	verify_email_user_api,
 } from "../../api";
 import { apiAction } from "./index";
-import { CHECK_IF_USER_EXISTS, SIGN_UP_USER, VERIFY_EMAIL } from "./types";
+import {
+	CHECK_IF_USER_EXISTS,
+	RESEND_EMAIL,
+	SIGN_UP_USER,
+	VERIFY_EMAIL,
+} from "./types";
 
 export const checkIfUserExists = email =>
 	apiAction({
@@ -34,4 +40,14 @@ export const verifyEmail = (email, token) =>
 		},
 		method: verify_email_user_api.method,
 		label: VERIFY_EMAIL,
+	});
+
+export const resendEmail = email =>
+	apiAction({
+		url: resend_email_user_api.url,
+		data: {
+			email: email,
+		},
+		method: resend_email_user_api.method,
+		label: RESEND_EMAIL,
 	});

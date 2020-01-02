@@ -21,7 +21,7 @@ class FourOFour extends React.Component {
 		"Someones getting fired for this.",
 	];
 
-	handleButtonClick = () => {
+	onClickHandler = () => {
 		navigate("/login");
 	};
 
@@ -36,7 +36,7 @@ class FourOFour extends React.Component {
 					<StyledH1>404</StyledH1>
 					<h2>{message}</h2>
 					<ButtonWrapper>
-						<BlockButton handleButtonClick={this.handleButtonClick}>
+						<BlockButton onClickHandler={this.onClickHandler}>
 							TAKE ME HOME
 						</BlockButton>
 					</ButtonWrapper>
