@@ -7,10 +7,10 @@ import { connect } from "react-redux";
 import zxcvbn from "zxcvbn";
 
 import mailSvg from "../../assets/svgs/mail.svg";
-import BlockButton from "../../components/BlockButton";
-import Input from "../../components/Input";
-import LargeCard from "../../components/LargeCard";
-import Spinner from "../../components/Spinner";
+import BlockButton from "../../components/buttons/BlockButton";
+import LargeCard from "../../components/cards/LargeCard";
+import Input from "../../components/inputs/Input";
+import Spinner from "../../components/miscellaneous/Spinner";
 import { checkIfUserExists, signUpUser } from "../../redux/actions/signUp";
 import {
 	CenterButtonWrapper,

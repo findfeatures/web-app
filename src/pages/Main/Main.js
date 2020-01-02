@@ -4,7 +4,7 @@ import React from "react";
 import { connect } from "react-redux";
 import withSizes from "react-sizes";
 
-import UnsupportedErrorModal from "../../components/UnsupportedErrorModal";
+import UnsupportedErrorOverlay from "../../components/modals/UnsupportedErrorOverlay";
 import Dashboard from "../Dashboard";
 import EmailVerification from "../EmailVerification";
 import FourOFour from "../FourOFour";
@@ -28,7 +28,7 @@ class Main extends React.Component {
 					{jwtToken !== null ? <Dashboard path="/dashboard" /> : null}
 					<FourOFour path="/404" default />
 				</StyledRouter>
-				<UnsupportedErrorModal show={!isSupportedScreenSize} />
+				<UnsupportedErrorOverlay show={!isSupportedScreenSize} />
 			</>
 		);
 	}

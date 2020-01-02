@@ -1,8 +1,8 @@
 import { navigate } from "@reach/router";
 import React from "react";
 
-import BlockButton from "../../components/BlockButton";
-import LargeCard from "../../components/LargeCard";
+import BlockButton from "../../components/buttons/BlockButton";
+import LargeCard from "../../components/cards/LargeCard";
 import {
 	ButtonWrapper,
 	FourOFourPageDiv,

@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 
-import BlockButton from "../../components/BlockButton";
-import Checkbox from "../../components/Checkbox";
-import Input from "../../components/Input";
-import LargeCard from "../../components/LargeCard";
-import Spinner from "../../components/Spinner";
+import BlockButton from "../../components/buttons/BlockButton";
+import LargeCard from "../../components/cards/LargeCard";
+import Checkbox from "../../components/inputs/Checkbox";
+import Input from "../../components/inputs/Input";
+import Spinner from "../../components/miscellaneous/Spinner";
+import Modal from "../../components/modals/Modal";
 import { authenticateUser } from "../../redux/actions/auth";
 import {
 	ExtraDetailsDiv,
@@ -71,28 +72,38 @@ class Login extends React.Component {
 	};
 
 	handleFinishedAuthenticationUser = statusCode => {
-		if (statusCode === 200) {
-			navigate("/dashboard");
-		} else if (statusCode === 503) {
-			// can't connect to server error
-			this.setState({
-				showPasswordError: true,
-				passwordErrorMessage: "Can't connect to server! Please retry.",
-			});
-		} else if (statusCode === 418) {
-			// I'm a teapot (418) = email exists but not verified
-			this.setState({
-				showPasswordError: true,
-				passwordErrorMessage: "Please verify your email first.",
-				showVerificationModel: true,
-			});
-		} else {
-			// we could handle different codes here a bit better
-			// (e.g. 500 "internal server error" or 401 "not authorised")
-			this.setState({
-				showPasswordError: true,
-				passwordErrorMessage: "Incorrect Email / Password combination!",
-			});
+		switch (statusCode) {
+			case 200:
+				navigate("/dashboard");
+				break;
+			case 418:
+				// I'm a teapot (418) = email exists but not verified
+				this.setState({
+					showPasswordError: true,
+					passwordErrorMessage: "Please verify your email first.",
+				});
+				this.setShowVerificationModal(true);
+				break;
+			case 503:
+				// can't connect to server error
+				this.setState({
+					showPasswordError: true,
+					passwordErrorMessage: "Can't connect to server! Please retry.",
+				});
+				break;
+			case 500:
+				// internal server error
+				this.setState({
+					showPasswordError: true,
+					passwordErrorMessage: "Internal Server Error! Please retry.",
+				});
+				break;
+			default:
+				this.setState({
+					showPasswordError: true,
+					passwordErrorMessage: "Incorrect Email / Password combination!",
+				});
+				break;
 		}
 		this.setState({ loading: false });
 	};
@@ -153,6 +164,12 @@ class Login extends React.Component {
 		navigate("/sign-up");
 	};
 
+	setShowVerificationModal = val => {
+		this.setState({
+			showVerificationModel: val,
+		});
+	};
+
 	render() {
 		return (
 			<LoginPageDiv>
@@ -202,6 +219,12 @@ class Login extends React.Component {
 						</BlockButton>
 					</RightButtonWrapper>
 				</LargeCard>
+				<Modal
+					isOpen={this.state.showVerificationModel}
+					onRequestClose={() => this.setShowVerificationModal(false)}
+				>
+					<div style={{ width: "400px", height: "300px" }}> im a test !</div>
+				</Modal>
 			</LoginPageDiv>
 		);
 	}

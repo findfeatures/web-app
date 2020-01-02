@@ -4,9 +4,9 @@ import * as queryString from "query-string";
 import React from "react";
 import { connect } from "react-redux";
 
-import BlockButton from "../../components/BlockButton";
-import LargeCard from "../../components/LargeCard";
-import Spinner from "../../components/Spinner";
+import BlockButton from "../../components/buttons/BlockButton";
+import LargeCard from "../../components/cards/LargeCard";
+import Spinner from "../../components/miscellaneous/Spinner";
 import { verifyEmail } from "../../redux/actions/signUp";
 import {
 	ButtonWrapper,
