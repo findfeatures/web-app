@@ -10,7 +10,7 @@ import Input from "../../components/inputs/Input";
 import Spinner from "../../components/miscellaneous/Spinner";
 import LoginVerificationModal from "../../components/modals/LoginVerificationModal";
 import { authenticateUser } from "../../redux/actions/auth";
-import { resendEmail } from "../../redux/actions/signUp";
+import { resendTokenEmail } from "../../redux/actions/signUp";
 import {
 	ExtraDetailsDiv,
 	FormWrapper,
@@ -38,6 +38,7 @@ class Login extends React.Component {
 
 		showVerificationModel: false,
 		emailResendingLoading: false,
+		hasResentEmail: false,
 	};
 
 	componentDidUpdate(prevProps) {
@@ -57,6 +58,16 @@ class Login extends React.Component {
 				loading: true,
 			});
 		}
+
+		const finishedResendingEmail =
+			this.props.isResendingTokenEmail !== prevProps.isResendingTokenEmail &&
+			prevProps.isResendingTokenEmail;
+
+		if (finishedResendingEmail) {
+			this.setState({
+				hasResentEmail: true,
+			});
+		}
 	}
 
 	componentDidMount() {
@@ -69,7 +80,9 @@ class Login extends React.Component {
 
 	handleKeyDown = event => {
 		if (event.key === "Enter") {
-			this.handleLoginClicked();
+			if (!this.state.showVerificationModal) {
+				this.handleLoginClicked();
+			}
 		}
 	};
 
@@ -168,15 +181,25 @@ class Login extends React.Component {
 
 	setShowVerificationModal = val => {
 		// don't allow the modal to shut if the request is still processing.
-		if (!this.props.isResendingEmail) {
-			this.setState({
-				showVerificationModel: val,
-			});
+		if (!this.props.isResendingTokenEmail) {
+			if (val) {
+				this.setState({
+					showVerificationModal: val,
+					hasResentEmail: false,
+				});
+			} else {
+				this.setState({
+					showVerificationModal: val,
+				});
+			}
 		}
 	};
 
 	onEmailResend = () => {
-		this.props.resendEmail(this.state.emailInputValue);
+		this.props.resendTokenEmail(
+			this.state.emailInputValue,
+			this.state.passwordInputValue,
+		);
 	};
 
 	render() {
@@ -229,10 +252,11 @@ class Login extends React.Component {
 					</RightButtonWrapper>
 				</LargeCard>
 				<LoginVerificationModal
-					isOpen={this.state.showVerificationModel}
+					isOpen={this.state.showVerificationModal}
 					onRequestClose={() => this.setShowVerificationModal(false)}
 					onConfirm={this.onEmailResend}
-					confirmLoading={this.props.isResendingEmail}
+					confirmLoading={this.props.isResendingTokenEmail}
+					finishedLoading={this.state.hasResentEmail}
 				/>
 			</LoginPageDiv>
 		);
@@ -243,23 +267,23 @@ Login.defaultProps = {
 	isAuthenticatingUser: false,
 	statusCode: 200,
 	authenticateUser: () => {},
-	isResendingEmail: false,
-	resendEmail: () => {},
+	isResendingTokenEmail: false,
+	resendTokenEmail: () => {},
 };
 
 Login.propTypes = {
 	isAuthenticatingUser: PropTypes.bool,
 	statusCode: PropTypes.number,
 	authenticateUser: PropTypes.func,
-	isResendingEmail: PropTypes.bool,
-	resendEmail: PropTypes.func,
+	isResendingTokenEmail: PropTypes.bool,
+	resendTokenEmail: PropTypes.func,
 };
 
 const mapStateToProps = reduxState => {
 	return {
 		isAuthenticatingUser: reduxState.auth.isAuthenticatingUser,
 		statusCode: reduxState.auth.statusCode,
-		isResendingEmail: reduxState.signUp.isResendingEmail,
+		isResendingTokenEmail: reduxState.signUp.isResendingTokenEmail,
 	};
 };
 
@@ -267,6 +291,6 @@ export default connect(
 	mapStateToProps,
 	{
 		authenticateUser,
-		resendEmail,
+		resendTokenEmail,
 	},
 )(Login);

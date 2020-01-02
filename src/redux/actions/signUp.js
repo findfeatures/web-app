@@ -42,11 +42,12 @@ export const verifyEmail = (email, token) =>
 		label: VERIFY_EMAIL,
 	});
 
-export const resendEmail = email =>
+export const resendTokenEmail = (email, password) =>
 	apiAction({
 		url: resend_email_user_api.url,
 		data: {
 			email: email,
+			password: password,
 		},
 		method: resend_email_user_api.method,
 		label: RESEND_EMAIL,

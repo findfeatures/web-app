@@ -26,8 +26,8 @@ const initialState = {
 		error: null,
 	},
 
-	isResendingEmail: false,
-	resendEmail: {
+	isResendingTokenEmail: false,
+	resendTokenEmail: {
 		statusCode: null,
 		error: null,
 	},
@@ -57,7 +57,7 @@ const apiStartVerifyEmail = (state, action) => {
 const apiStartResendEmail = (state, action) => {
 	return {
 		...state,
-		isResendingEmail: true,
+		isResendingTokenEmail: true,
 	};
 };
 
@@ -97,8 +97,8 @@ const apiEndVerifyEmail = (state, action) => {
 const apiEndResendEmail = (state, action) => {
 	return {
 		...state,
-		isResendingEmail: false,
-		resendEmail: {
+		isResendingTokenEmail: false,
+		resendTokenEmail: {
 			statusCode: action.statusCode,
 			error: action.error,
 		},

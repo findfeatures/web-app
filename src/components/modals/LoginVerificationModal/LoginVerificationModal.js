@@ -20,13 +20,25 @@ class LoginVerificationModal extends React.PureComponent {
 			>
 				<StyledDiv>
 					<StyledTitle>Important!</StyledTitle>
-					You need to verify your account first before logging in.
+					{this.props.finishedLoading
+						? "Thank you, your email has been sent again."
+						: "You need to verify your account first before logging in."}
 					<div style={{ width: "250px", height: "75px" }}>
 						<BlockButton
-							onClickHandler={this.props.onConfirm}
+							onClickHandler={
+								this.props.finishedLoading
+									? this.onRequestClose
+									: this.props.onConfirm
+							}
 							disabled={this.props.confirmLoading}
 						>
-							{this.props.confirmLoading ? <Spinner /> : "RESEND EMAIL"}
+							{this.props.confirmLoading ? (
+								<Spinner />
+							) : this.props.finishedLoading ? (
+								"CLOSE"
+							) : (
+								"RESEND EMAIL"
+							)}
 						</BlockButton>
 					</div>
 				</StyledDiv>
@@ -48,6 +60,7 @@ LoginVerificationModal.propTypes = {
 	children: PropTypes.node,
 	onConfirm: PropTypes.func.isRequired,
 	confirmLoading: PropTypes.bool.isRequired,
+	finishedLoading: PropTypes.bool.isRequired,
 };
 
 export default LoginVerificationModal;
