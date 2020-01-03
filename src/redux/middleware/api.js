@@ -19,7 +19,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 		url,
 		method,
 		data,
-		accessToken,
+		requiresAccessToken,
 		onSuccess,
 		onFailure,
 		label,
@@ -33,10 +33,10 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 		throw Error("label must be defined in apiMiddleware");
 	}
 
-	if (accessToken) {
+	if (requiresAccessToken) {
 		headers = {
 			...headers,
-			Authorization: `${accessToken}`,
+			Authorization: `${localStorage.getItem("JWT_TOKEN")}`,
 		};
 	}
 

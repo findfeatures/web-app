@@ -17,11 +17,16 @@ export const sign_up_user_api = {
 };
 
 export const verify_email_user_api = {
-	url: `${BASE_URL}/v1/user-token`,
+	url: `${BASE_URL}/v1/user/token`,
 	method: "POST",
 };
 
 export const resend_email_user_api = {
-	url: `${BASE_URL}/v1/resend-email`,
+	url: `${BASE_URL}/v1/user/resend-email`,
 	method: "POST",
+};
+
+export const get_projects_api = {
+	url: `${BASE_URL}/v1/projects`,
+	method: "GET",
 };

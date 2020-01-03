@@ -3,6 +3,7 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { StripeProvider } from "react-stripe-elements";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
