@@ -11,7 +11,7 @@ export const createGlobalFeatureStyle = () => {
 			height: 100%;
 			margin: 0px;
 			overflow-y: scroll;
-			background-color: #fafafa;
+			background-color: #FAFAFA;
 			letter-spacing: 2px;
 		}
 

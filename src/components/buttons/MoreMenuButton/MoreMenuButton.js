@@ -4,38 +4,34 @@ import { Tooltip } from "react-tippy";
 
 import { ReactComponent as DownArrowSVG } from "../../../assets/svgs/down-arrow.svg";
 import MenuButton from "../MenuButton";
-import { TippyOverride } from "./MoreMenuButton.Style.js";
+import MoreMenuItemButton from "../MoreMenuItemButton";
+import { MenuToolTipDiv } from "./MoreMenuButton.Style.js";
 
 const MoreMenuButton = () => {
 	return (
-		<TippyOverride>
-			<Tooltip
-				html={
-					<div style={{ width: "200px" }}>
-						<div
-							onClick={() => {
-								console.log("here!:)");
-								localStorage.removeItem("JWT_TOKEN");
-								navigate("/login");
-							}}
-							style={{ width: "100%", height: "35px", fontSize: "12px" }}
-						>
-							Logout
-						</div>
-					</div>
-				}
-				interactive={true}
-				position="bottom"
-				trigger="click"
-				theme="light"
-				animation="perspective"
-				arrow="true"
-			>
-				<MenuButton>
-					<DownArrowSVG />
-				</MenuButton>
-			</Tooltip>
-		</TippyOverride>
+		<Tooltip
+			html={
+				<MenuToolTipDiv>
+					<MoreMenuItemButton
+						onClick={() => {
+							localStorage.removeItem("JWT_TOKEN");
+							navigate("/login");
+						}}
+						text={"Logout"}
+					/>
+				</MenuToolTipDiv>
+			}
+			interactive={true}
+			position="bottom"
+			trigger="click"
+			theme="light"
+			animation="perspective"
+			arrow="true"
+		>
+			<MenuButton>
+				<DownArrowSVG />
+			</MenuButton>
+		</Tooltip>
 	);
 };
 

@@ -11,7 +11,7 @@ export const ButtonDiv = styled.div`
 	cursor: pointer;
 
 	svg {
-		fill: #454545;
+		fill: #5e5e5e;
 		height: 20px;
 	}
 
