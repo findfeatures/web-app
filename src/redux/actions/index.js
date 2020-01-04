@@ -10,6 +10,7 @@ export const apiAction = ({
 	label = "",
 	timeout = 30000,
 	headersOverride = null,
+	defaultData = null,
 }) => {
 	return {
 		type: API,
@@ -17,6 +18,7 @@ export const apiAction = ({
 			url,
 			method,
 			data,
+			defaultData,
 			requiresAccessToken,
 			onSuccess,
 			onFailure,
@@ -32,11 +34,13 @@ export const apiStart = label => ({
 	payload: label,
 });
 
-export const apiEnd = ({ label, statusCode = 200, error = null }) => {
+export const apiEnd = ({ label, statusCode = 200, error = null, data }) => {
+	// todo: add data here?!
 	return {
 		type: API_END,
 		payload: label,
 		statusCode,
 		error,
+		data,
 	};
 };

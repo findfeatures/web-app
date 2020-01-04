@@ -7,6 +7,7 @@ import BlockButton from "../../components/buttons/BlockButton";
 import LargeCard from "../../components/cards/LargeCard";
 import Checkbox from "../../components/inputs/Checkbox";
 import Input from "../../components/inputs/Input";
+import Credits from "../../components/miscellaneous/Credits";
 import Spinner from "../../components/miscellaneous/Spinner";
 import LoginVerificationModal from "../../components/modals/LoginVerificationModal";
 import { authenticateUser } from "../../redux/actions/auth";
@@ -205,6 +206,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<LoginPageDiv>
+				<Credits />
 				<LargeCard>
 					<LogoWrapper>Find Features</LogoWrapper>
 					<FormWrapper>

@@ -46,7 +46,7 @@ class Main extends React.Component {
 						<Login path="/login" />
 						<SignUp path="/sign-up" />
 						<EmailVerification path="/email-verification" />
-						{jwtToken !== null ? <Dashboard path="/dashboard" /> : null}
+						{jwtToken !== null ? <Dashboard path="/dashboard/*" /> : null}
 						<FourOFour path="/404" default />
 					</StyledRouter>
 					<UnsupportedErrorOverlay show={!isSupportedScreenSize} />

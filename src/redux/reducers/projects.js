@@ -7,13 +7,12 @@ import {
 
 const initialState = {
 	isRequestingProjects: false,
-	data: [],
+	data: null,
 };
 
 const setProductsData = (state, action) => {
 	return {
 		...state,
-		data: action.payload.projects,
 	};
 };
 
@@ -28,6 +27,7 @@ const apiEndGetProjects = (state, action) => {
 	return {
 		...state,
 		isRequestingProjects: false,
+		data: action.data.projects || action.data,
 	};
 };
 
@@ -35,8 +35,6 @@ export default function projects(state = initialState, action) {
 	const payload = action.payload;
 
 	switch (action.type) {
-		case SET_PRODUCTS_DATA:
-			return setProductsData(state, action);
 		case API_START:
 			if (payload === GET_PROJECTS) {
 				return apiStartGetProjects(state, action);

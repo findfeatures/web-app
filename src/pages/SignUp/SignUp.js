@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { connect } from "react-redux";
 import zxcvbn from "zxcvbn";
 
-import mailSvg from "../../assets/svgs/mail.svg";
+import mailSVG from "../../assets/svgs/mail.svg";
 import BlockButton from "../../components/buttons/BlockButton";
 import LargeCard from "../../components/cards/LargeCard";
 import Input from "../../components/inputs/Input";
@@ -487,7 +487,7 @@ class SignUp extends React.PureComponent {
 			<>
 				<TitleWrapper>Sign Up Complete!</TitleWrapper>
 				<img
-					src={mailSvg}
+					src={mailSVG}
 					width={256}
 					style={{ margin: 10 }}
 					alt={"large email icon"}

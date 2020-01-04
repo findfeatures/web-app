@@ -19,6 +19,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 		url,
 		method,
 		data,
+		defaultData,
 		requiresAccessToken,
 		onSuccess,
 		onFailure,
@@ -61,6 +62,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 			dispatch(
 				apiEnd({
 					label,
+					data,
 				}),
 			);
 
@@ -85,6 +87,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 						label,
 						statusCode: error.response.status,
 						error: error.response,
+						data: defaultData,
 					}),
 				);
 			} else {
@@ -97,6 +100,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 						error: {
 							message: "Can't connect to server!",
 						},
+						data: defaultData,
 					}),
 				);
 			}

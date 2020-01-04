@@ -1,9 +1,11 @@
-import "./index.css";
+import "react-tippy/dist/tippy.css";
+
+import "./css/index.css";
+import "./css/tippyOverides.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { StripeProvider } from "react-stripe-elements";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
