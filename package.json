@@ -36,7 +36,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pretty": "prettier --config .prettier.json  --write \"src/**/*.js\""
+    "pretty": "prettier --config .prettier.json  --write \"src/**/*.js\"",
+    "deadfile": "deadfile ./src/index.js --dir=./src"
   },
   "eslintConfig": {
     "extends": "react-app"

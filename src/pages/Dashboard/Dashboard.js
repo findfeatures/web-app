@@ -6,7 +6,6 @@ import NavBar from "../../components/NavBar";
 import { ContentDiv, DashboardPageDiv, NavBarDiv } from "./Dashboard.Style.js";
 
 class Dashboard extends React.Component {
-
 	render() {
 		return (
 			<DashboardPageDiv>
@@ -22,23 +21,15 @@ class Dashboard extends React.Component {
 	}
 }
 
-Dashboard.defaultProps = {
+Dashboard.defaultProps = {};
 
-};
-
-Dashboard.propTypes = {
-
-};
+Dashboard.propTypes = {};
 
 const mapStateToProps = reduxState => {
-	return {
-
-	};
+	return {};
 };
 
 export default connect(
 	mapStateToProps,
-	{
-
-	},
+	{},
 )(Dashboard);
