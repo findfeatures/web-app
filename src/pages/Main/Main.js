@@ -13,6 +13,7 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import { StyledRouter } from "./Main.Style.js";
 
+// StripeProvider is used in here because want to use the componentDidMount as stripe is added async
 class Main extends React.Component {
 	state = {
 		stripe: null,
@@ -36,8 +37,6 @@ class Main extends React.Component {
 	render() {
 		const isSupportedScreenSize = this.props.isSupportedScreenSize;
 
-		const jwtToken = localStorage.getItem("JWT_TOKEN");
-
 		return (
 			<StripeProvider stripe={this.state.stripe}>
 				<>
@@ -46,7 +45,7 @@ class Main extends React.Component {
 						<Login path="/login" />
 						<SignUp path="/sign-up" />
 						<EmailVerification path="/email-verification" />
-						{jwtToken !== null ? <Dashboard path="/dashboard/*" /> : null}
+						<Dashboard path="/dashboard" />
 						<FourOFour path="/404" default />
 					</StyledRouter>
 					<UnsupportedErrorOverlay show={!isSupportedScreenSize} />

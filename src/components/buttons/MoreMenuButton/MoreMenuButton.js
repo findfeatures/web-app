@@ -4,19 +4,24 @@ import { Tooltip } from "react-tippy";
 import { ReactComponent as DownArrowSVG } from "../../../assets/svgs/down-arrow.svg";
 import MenuButton from "../MenuButton";
 import { TippyOverride } from "./MoreMenuButton.Style.js";
+import {navigate} from "@reach/router";
 
 const MoreMenuButton = () => {
 	return (
 		<TippyOverride>
 			<Tooltip
 				html={
-					<div style={{ width: "150px" }}>
-						<button
-							onClick={() => console.log("clicked!")}
-							style={{ width: "100%", background: "red" }}
+					<div style={{ width: "200px"}}>
+						<div
+							onClick={() => {
+								console.log('here!:)');
+								localStorage.removeItem('JWT_TOKEN');
+								navigate('/login');
+							}}
+							style={{ width: "100%", height: "35px", fontSize: "12px"}}
 						>
 							Logout
-						</button>
+						</div>
 					</div>
 				}
 				interactive={true}

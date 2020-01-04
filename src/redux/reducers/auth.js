@@ -1,10 +1,7 @@
-import jwt_decode from "jwt-decode";
-
 import {
 	API_END,
 	API_START,
 	AUTHENTICATE_USER,
-	DECODE_JWT_TOKEN,
 	SET_JWT_TOKEN,
 } from "../actions/types";
 
@@ -22,15 +19,6 @@ const setJWTToken = (state, action) => {
 
 	return {
 		...state,
-	};
-};
-
-const decodeJWTToken = (state, action) => {
-	const token = localStorage.getItem("JWT_TOKEN");
-
-	return {
-		...state,
-		jwtData: jwt_decode(token),
 	};
 };
 
@@ -56,8 +44,6 @@ export default function auth(state = initialState, action) {
 	switch (action.type) {
 		case SET_JWT_TOKEN:
 			return setJWTToken(state, action);
-		case DECODE_JWT_TOKEN:
-			return decodeJWTToken(state, action);
 		case API_START:
 			if (payload === AUTHENTICATE_USER) {
 				return apiStartAuthenticateUser(state, action);

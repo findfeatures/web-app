@@ -26,11 +26,6 @@ export const resend_email_user_api = {
 	method: "POST",
 };
 
-export const get_projects_api = {
-	url: `${BASE_URL}/v1/projects`,
-	method: "GET",
-};
-
 export const get_notifications_api = {
 	url: `${BASE_URL}/v1/user/notifications`,
 	method: "GET",
