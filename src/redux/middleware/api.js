@@ -37,7 +37,7 @@ const sendRequest = ({ dispatch, action, retries = 0 }) => {
 	if (requiresAccessToken) {
 		headers = {
 			...headers,
-			Authorization: `${localStorage.getItem("JWT_TOKEN")}`,
+			Authorization: `${sessionStorage.getItem("JWT_TOKEN")}`,
 		};
 	}
 

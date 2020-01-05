@@ -14,7 +14,7 @@ const MoreMenuButton = () => {
 				<MenuToolTipDiv>
 					<MoreMenuItemButton
 						onClickHandler={() => {
-							localStorage.removeItem("JWT_TOKEN");
+							sessionStorage.removeItem("JWT_TOKEN");
 							navigate("/login");
 						}}
 						text={"Logout"}

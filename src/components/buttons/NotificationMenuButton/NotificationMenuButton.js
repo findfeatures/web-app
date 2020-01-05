@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Tooltip } from "react-tippy";
 
@@ -34,7 +34,7 @@ const NotificationMenuButton = ({
 		</Tooltip>
 	);
 };
-// todo: isRequestingNotifications
+
 const mapStateToProps = reduxState => {
 	return {
 		isRequestingNotifications:

@@ -15,7 +15,7 @@ const initialState = {
 const setJWTToken = (state, action) => {
 	const token = action.payload.JWT;
 
-	localStorage.setItem("JWT_TOKEN", token);
+	sessionStorage.setItem("JWT_TOKEN", token);
 
 	return {
 		...state,

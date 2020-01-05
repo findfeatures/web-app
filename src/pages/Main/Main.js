@@ -11,6 +11,7 @@ import EmailVerification from "../EmailVerification";
 import FourOFour from "../FourOFour";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import Welcome from "../Welcome";
 import { StyledRouter } from "./Main.Style.js";
 
 // StripeProvider is used in here because want to use the componentDidMount as stripe is added async
@@ -45,7 +46,9 @@ class Main extends React.Component {
 						<Login path="/login" />
 						<SignUp path="/sign-up" />
 						<EmailVerification path="/email-verification" />
-						<Dashboard path="/dashboard" />
+						<Dashboard path="/dashboard">
+							<Welcome path="/welcome" />
+						</Dashboard>
 						<FourOFour path="/404" default />
 					</StyledRouter>
 					<UnsupportedErrorOverlay show={!isSupportedScreenSize} />
