@@ -1,10 +1,10 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import React from "react";
 import { connect } from "react-redux";
 
 import NavBar from "../../components/NavBar";
-import { ContentDiv, DashboardPageDiv, NavBarDiv } from "./Dashboard.Style.js";
 import FourOFour from "../FourOFour";
+import { ContentDiv, DashboardPageDiv, NavBarDiv } from "./Dashboard.Style.js";
 
 class Dashboard extends React.Component {
 	state = {
@@ -17,17 +17,17 @@ class Dashboard extends React.Component {
 		try {
 			const token = jwt.decode(sessionStorage.getItem("JWT_TOKEN"));
 
-			if (token.exp > (Date.now().valueOf() / 1000)) {
+			if (token.exp > Date.now().valueOf() / 1000) {
 				this.state.hasValidToken = true;
 			}
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 	}
 
 	render() {
 		if (!this.state.hasValidToken) {
-			return <FourOFour/>
+			return <FourOFour />;
 		}
 
 		return (
