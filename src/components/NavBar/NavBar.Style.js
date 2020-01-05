@@ -21,6 +21,10 @@ export const LogoDiv = styled.div`
 	font-size: 20px;
 	cursor: pointer;
 	user-select: none;
+
+	:active {
+		color: #0055fe;
+	}
 `;
 
 export const RightButtonsDiv = styled.div`
