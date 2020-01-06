@@ -49,8 +49,12 @@ class Dashboard extends React.Component {
 	}
 
 	render() {
+		// not the happiest with this code but it's something that works and has the functionality
+		// i wanted. I think the overall aim is:
+		// - have 404 work for /dashboard links (which is why we need all the dashboard links here)
+		// - have welcome screen show if user logs in and has no projects.
 		const showSpinner = this.state.loadingInitialData;
-		const showFourOFour = !this.state.hasValidToken;
+		const showFourOFour = !this.state.hasValidToken || !["", "welcome", "project/create", "project/join"].includes(this.props["*"]);
 
 		// not the cleanest way but this is quite simple.
 		const showWelcomeScreen =
