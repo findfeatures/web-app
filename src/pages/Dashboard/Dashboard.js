@@ -30,7 +30,8 @@ class Dashboard extends React.Component {
 	render() {
 		// not the happiest with this code but it's something that works and has the functionality
 		// we want (show 404 on routes not defined..)
-		const showFourOFour = !this.state.hasValidToken || ![""].includes(this.props["*"]);
+		const showFourOFour =
+			!this.state.hasValidToken || ![""].includes(this.props["*"]);
 
 		if (showFourOFour) {
 			return <FourOFour />;
@@ -41,9 +42,7 @@ class Dashboard extends React.Component {
 				<NavBarDiv>
 					<NavBar />
 				</NavBarDiv>
-				<ContentDiv>
-					{this.props.children}
-				</ContentDiv>
+				<ContentDiv>{this.props.children}</ContentDiv>
 			</DashboardPageDiv>
 		);
 	}

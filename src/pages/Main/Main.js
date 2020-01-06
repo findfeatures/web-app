@@ -1,4 +1,5 @@
 import { Redirect } from "@reach/router";
+import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
@@ -8,6 +9,7 @@ import { StripeProvider } from "react-stripe-elements";
 import UnsupportedErrorOverlay from "../../components/modals/UnsupportedErrorOverlay";
 import Dashboard from "../Dashboard";
 import EmailVerification from "../EmailVerification";
+import Error from "../Error/Error";
 import FourOFour from "../FourOFour";
 import Login from "../Login";
 import SignUp from "../SignUp";
@@ -17,6 +19,7 @@ import { StyledRouter } from "./Main.Style.js";
 // StripeProvider is used in here because want to use the componentDidMount as stripe is added async
 class Main extends React.Component {
 	state = {
+		hasError: false,
 		stripe: null,
 	};
 
@@ -35,6 +38,13 @@ class Main extends React.Component {
 		}
 	}
 
+	componentDidCatch(error, info) {
+		navigate("/error");
+
+		// todo: In the future, use an error reporting tool to push these errors to!
+		console.error(error, info);
+	}
+
 	render() {
 		const isSupportedScreenSize = this.props.isSupportedScreenSize;
 
@@ -49,6 +59,7 @@ class Main extends React.Component {
 						<Dashboard path="/dashboard">
 							<Welcome path="/welcome" />
 						</Dashboard>
+						<Error path="/error" />
 						<FourOFour path="/404" default />
 					</StyledRouter>
 					<UnsupportedErrorOverlay show={!isSupportedScreenSize} />
