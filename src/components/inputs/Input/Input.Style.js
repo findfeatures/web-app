@@ -33,8 +33,10 @@ export const StyledInput = styled.input`
 	font-size: 18px;
 	outline: 0;
 	padding-bottom: 5px;
-	border-width: 0 0 3px;
-	border-color: black;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 3px solid black;
 `;
 
 export const ErrorDiv = styled.div`

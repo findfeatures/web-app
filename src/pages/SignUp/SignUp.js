@@ -500,7 +500,7 @@ class SignUp extends React.PureComponent {
 				</SignUpCompleteDiv>
 				<CenterButtonWrapper>
 					<BlockButton onClickHandler={() => navigate("/login")}>
-						LOGIN
+						LOG IN
 					</BlockButton>
 				</CenterButtonWrapper>
 			</>
