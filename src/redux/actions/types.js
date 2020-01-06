@@ -11,3 +11,5 @@ export const VERIFY_EMAIL = "VERIFY_EMAIL";
 export const RESEND_EMAIL = "RESEND_EMAIL";
 
 export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
+
+export const GET_PROJECTS = "GET_PROJECTS";

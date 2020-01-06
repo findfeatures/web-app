@@ -5,7 +5,6 @@ export const DashboardPageDiv = styled.div`
 	height: 100%;
 	display: flex;
 	flex-flow: column;
-	// background-color: white;
 `;
 
 export const NavBarDiv = styled.div`

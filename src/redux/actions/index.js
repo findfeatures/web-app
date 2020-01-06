@@ -35,7 +35,6 @@ export const apiStart = label => ({
 });
 
 export const apiEnd = ({ label, statusCode = 200, error = null, data }) => {
-	// todo: add data here?!
 	return {
 		type: API_END,
 		payload: label,
