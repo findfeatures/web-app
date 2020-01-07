@@ -56,7 +56,7 @@ class Main extends React.Component {
 						<Login path="/login" />
 						<SignUp path="/sign-up" />
 						<EmailVerification path="/email-verification" />
-						<Dashboard path="/dashboard">
+						<Dashboard path="/dashboard" childrenRoutes={["", "welcome"]}>
 							<Welcome path="/welcome" />
 						</Dashboard>
 						<Error path="/error" />

@@ -17,10 +17,17 @@ export const NavBarDiv = styled.div`
 	-moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 `;
 
-export const ContentDiv = styled.div`
+export const PageDiv = styled.div`
 	flex: 2;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
+	position: relative;
+`;
+
+export const SideBarWrapper = styled.div`
+	height: 100%;
+	width: 50px;
+	background-color: red;
+	position: absolute;
+	left: 0;
+	z-index: -1;
+	box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 `;

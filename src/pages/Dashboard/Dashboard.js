@@ -1,12 +1,19 @@
 import jwt from "jsonwebtoken";
+import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/navigation/NavBar";
+import SideBar from "../../components/navigation/SideBar";
 import FourOFour from "../FourOFour";
-import { ContentDiv, DashboardPageDiv, NavBarDiv } from "./Dashboard.Style.js";
+import {
+	DashboardPageDiv,
+	NavBarDiv,
+	PageDiv,
+	SideBarWrapper,
+} from "./Dashboard.Style.js";
 
-class Dashboard extends React.Component {
+class Dashboard extends React.PureComponent {
 	state = {
 		hasValidToken: false,
 		loadingInitialData: true,
@@ -31,7 +38,8 @@ class Dashboard extends React.Component {
 		// not the happiest with this code but it's something that works and has the functionality
 		// we want (show 404 on routes not defined..)
 		const showFourOFour =
-			!this.state.hasValidToken || ![""].includes(this.props["*"]);
+			!this.state.hasValidToken ||
+			!this.props.childrenRoutes.includes(this.props["*"]);
 
 		if (showFourOFour) {
 			return <FourOFour />;
@@ -42,15 +50,24 @@ class Dashboard extends React.Component {
 				<NavBarDiv>
 					<NavBar />
 				</NavBarDiv>
-				<ContentDiv>{this.props.children}</ContentDiv>
+				<PageDiv>
+					<SideBarWrapper>
+						<SideBar />
+					</SideBarWrapper>
+					{this.props.children}
+				</PageDiv>
 			</DashboardPageDiv>
 		);
 	}
 }
 
-Dashboard.defaultProps = {};
+Dashboard.defaultProps = {
+	childrenRoutes: [],
+};
 
-Dashboard.propTypes = {};
+Dashboard.propTypes = {
+	childrenRoutes: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = reduxState => {
 	return {};

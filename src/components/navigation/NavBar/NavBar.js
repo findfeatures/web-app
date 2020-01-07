@@ -1,8 +1,8 @@
 import { navigate } from "@reach/router";
 import React from "react";
 
-import MoreMenuButton from "../buttons/MoreMenuButton";
-import NotificationMenuButton from "../buttons/NotificationMenuButton";
+import MoreMenuButton from "../../buttons/MoreMenuButton";
+import NotificationMenuButton from "../../buttons/NotificationMenuButton";
 import {
 	ContentDiv,
 	LogoContainer,
