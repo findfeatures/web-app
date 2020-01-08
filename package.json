@@ -6,6 +6,7 @@
     "@apollo/react-hooks": "^3.0.0",
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
@@ -37,7 +38,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "prettier --config .prettier.json  --write \"src/**/*.js\"",
-    "deadfile": "deadfile ./src/index.js --dir=./src"
+    "deadfile": "deadfile ./src/index.js --dir=./src",
+    "cypress": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,8 +58,12 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@cypress/code-coverage": "^1.10.4",
+    "cypress": "^3.8.1",
     "deadfile": "0.0.7",
     "import-sort-style-module": "^6.0.0",
+    "istanbul-lib-coverage": "^3.0.0",
+    "nyc": "^15.0.0",
     "prettier": "^1.18.2",
     "prettier-plugin-import-sort": "0.0.3",
     "redux-devtools": "^3.5.0"
