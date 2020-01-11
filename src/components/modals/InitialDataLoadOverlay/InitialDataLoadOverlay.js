@@ -3,9 +3,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import Spinner from "../../miscellaneous/Spinner";
-import { StyledDiv } from "./FullScreenSpinnerOverlay.Style.js";
+import { StyledDiv } from "./InitialDataLoadOverlay.Style.js";
 
-class FullScreenSpinnerOverlay extends React.PureComponent {
+class InitialDataLoadOverlay extends React.PureComponent {
+	// maybe add a 'welcome to find features screen which shows up for 1second'
+	// probably use a seperate component tho because logic would get fuzzy here
+	// and need to check for errors first :)
+	// componentDidUpdate(prevProps, prevState, snapshot) {
+	// 	if ((prevProps.show !== this.props.show) && !this.props.error) {
+	//
+	// 	}
+	// }
+
 	render() {
 		return (
 			(this.props.show || this.props.error) &&
@@ -34,14 +43,14 @@ class FullScreenSpinnerOverlay extends React.PureComponent {
 	}
 }
 
-FullScreenSpinnerOverlay.defaultProps = {
+InitialDataLoadOverlay.defaultProps = {
 	show: false,
 	error: false,
 };
 
-FullScreenSpinnerOverlay.propTypes = {
+InitialDataLoadOverlay.propTypes = {
 	show: PropTypes.bool.isRequired,
 	error: PropTypes.bool.isRequired,
 };
 
-export default FullScreenSpinnerOverlay;
+export default InitialDataLoadOverlay;

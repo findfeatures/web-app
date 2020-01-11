@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 
-import FullScreenSpinnerOverlay from "../../components/modals/FullScreenSpinnerOverlay";
+import InitialDataLoadOverlay from "../../components/modals/InitialDataLoadOverlay";
 import NavBar from "../../components/navigation/NavBar";
 import SideBar from "../../components/navigation/SideBar";
 import { getProjects } from "../../redux/actions/projects";
@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
 
 	constructor(props) {
 		super(props);
-
+		// todo: make this a function so 404 can use it too!
 		try {
 			const token = jwt.decode(sessionStorage.getItem("JWT_TOKEN"));
 
@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
 					</SideBarWrapper>
 					{this.props.children}
 				</PageDiv>
-				<FullScreenSpinnerOverlay
+				<InitialDataLoadOverlay
 					show={this.loadingInitialData()}
 					error={this.loadingInitialDataError()}
 				/>

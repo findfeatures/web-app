@@ -1,4 +1,5 @@
 import { navigate } from "@reach/router";
+import jwt from "jsonwebtoken";
 import React from "react";
 
 import BlockButton from "../../components/buttons/BlockButton";
@@ -23,7 +24,16 @@ class FourOFour extends React.Component {
 	];
 
 	onClickHandler = () => {
-		navigate("/login");
+		// todo: make this a function so it can be shared :)
+		try {
+			const token = jwt.decode(sessionStorage.getItem("JWT_TOKEN"));
+
+			if (token.exp > Date.now().valueOf() / 1000) {
+				navigate("/dashboard");
+			}
+		} catch (error) {
+			navigate("/login");
+		}
 	};
 
 	render() {
