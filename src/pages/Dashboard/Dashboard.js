@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 
+import FullScreenSpinnerOverlay from "../../components/modals/FullScreenSpinnerOverlay";
 import NavBar from "../../components/navigation/NavBar";
 import SideBar from "../../components/navigation/SideBar";
+import { getProjects } from "../../redux/actions/projects";
 import FourOFour from "../FourOFour";
 import {
 	DashboardPageDiv,
@@ -13,11 +15,11 @@ import {
 	SideBarWrapper,
 } from "./Dashboard.Style.js";
 
-class Dashboard extends React.PureComponent {
+class Dashboard extends React.Component {
 	state = {
 		hasValidToken: false,
-		loadingInitialData: true,
-		initialDataError: false,
+		finishedRequestingProjectData: false,
+		projectDataError: false,
 	};
 
 	constructor(props) {
@@ -33,6 +35,41 @@ class Dashboard extends React.PureComponent {
 			console.log(error);
 		}
 	}
+
+	componentDidMount() {
+		if (this.state.hasValidToken) {
+			this.props.getProjects();
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		const finishedRequestingProjects =
+			this.props.isRequestingProjects !== prevProps.isRequestingProjects &&
+			prevProps.isRequestingProjects;
+
+		if (finishedRequestingProjects) {
+			// todo: handle finished here! and status codes!!
+
+			if (this.props.projectRequestStatusCode === 200) {
+				this.setState({
+					finishedRequestingProjectData: true,
+				});
+			} else {
+				this.setState({
+					finishedRequestingProjectData: true,
+					projectDataError: true,
+				});
+			}
+		}
+	}
+
+	loadingInitialData = () => {
+		return !this.state.finishedRequestingProjectData;
+	};
+
+	loadingInitialDataError = () => {
+		return this.state.projectDataError;
+	};
 
 	render() {
 		// not the happiest with this code but it's something that works and has the functionality
@@ -52,10 +89,14 @@ class Dashboard extends React.PureComponent {
 				</NavBarDiv>
 				<PageDiv>
 					<SideBarWrapper>
-						<SideBar />
+						<SideBar projects={this.props.projects} />
 					</SideBarWrapper>
 					{this.props.children}
 				</PageDiv>
+				<FullScreenSpinnerOverlay
+					show={this.loadingInitialData()}
+					error={this.loadingInitialDataError()}
+				/>
 			</DashboardPageDiv>
 		);
 	}
@@ -63,17 +104,31 @@ class Dashboard extends React.PureComponent {
 
 Dashboard.defaultProps = {
 	childrenRoutes: [],
+	getProjects: () => {},
+	projects: [],
+	isRequestingProjects: false,
+	projectRequestStatusCode: 200,
 };
 
 Dashboard.propTypes = {
 	childrenRoutes: PropTypes.array.isRequired,
+	getProjects: PropTypes.func.isRequired,
+	projects: PropTypes.array.isRequired,
+	isRequestingProjects: PropTypes.bool.isRequired,
+	projectRequestStatusCode: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = reduxState => {
-	return {};
+	return {
+		projects: reduxState.projects.data,
+		isRequestingProjects: reduxState.projects.isRequestingProjects,
+		projectRequestStatusCode: reduxState.projects.statusCode,
+	};
 };
 
 export default connect(
 	mapStateToProps,
-	{},
+	{
+		getProjects,
+	},
 )(Dashboard);

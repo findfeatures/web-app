@@ -5,6 +5,7 @@ export const DashboardPageDiv = styled.div`
 	height: 100%;
 	display: flex;
 	flex-flow: column;
+	position: relative;
 `;
 
 export const NavBarDiv = styled.div`
@@ -28,6 +29,5 @@ export const SideBarWrapper = styled.div`
 	background-color: red;
 	position: absolute;
 	left: 0;
-	z-index: -1;
 	box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
 `;

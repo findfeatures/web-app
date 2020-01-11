@@ -14,20 +14,12 @@ class UnsupportedErrorOverlay extends React.PureComponent {
 		const reactModalPortals = document.querySelectorAll(".ReactModal__Overlay");
 		const tippyPopups = document.querySelectorAll("[id^=tippy-tooltip-]");
 
-		if (this.props.show) {
-			rootElement.style.filter = "blur(20px)";
-			reactModalPortals.forEach(portal => (portal.style.filter = "blur(20px)"));
-			tippyPopups.forEach(
-				tippyPopup => (tippyPopup.style.filter = "blur(20px)"),
-			);
-		} else {
-			// todo: not sure how to fix not having to reset the blur here
-			rootElement.style.filter = "blur(0px)";
-			reactModalPortals.forEach(portal => (portal.style.filter = "blur(0px)"));
-			tippyPopups.forEach(
-				tippyPopup => (tippyPopup.style.filter = "blur(0px)"),
-			);
-		}
+		// show refers to showing the overlay!
+		const blur = `blur(${this.props.show ? "20px" : "0px"})`;
+
+		rootElement.style.filter = blur;
+		reactModalPortals.forEach(portal => (portal.style.filter = blur));
+		tippyPopups.forEach(tippyPopup => (tippyPopup.style.filter = blur));
 
 		return (
 			this.props.show &&

@@ -40,10 +40,10 @@ context("Login", () => {
 
 		cy.route({
 			method: auth_user_api.method,
-		    url: auth_user_api.path,
-		    onResponse: () => {
-		       expect("Unexpected Https call").to.be.false;
-		    }
+			url: auth_user_api.path,
+			onResponse: () => {
+				expect("Unexpected Https call").to.be.false;
+			},
 		});
 
 		cy.contains("LOG IN").click();
@@ -54,7 +54,7 @@ context("Login", () => {
 		cy.location("pathname").should("include", "login");
 	});
 
-	const makeLoginRequest = ({useEnterKey}) => {
+	const makeLoginRequest = ({ useEnterKey }) => {
 		cy.get("[data-test-id=input-text-Email]")
 			.type("demo@user.com")
 			.should("have.value", "demo@user.com");
@@ -81,14 +81,14 @@ context("Login", () => {
 				expect(password).to.equal("password");
 			},
 			onResponse: () => {
-				expect(sessionStorage.getItem('JWT_TOKEN')).to.equal(jwtToken);
-			}
-		}).as('authRequestRoute');
+				expect(sessionStorage.getItem("JWT_TOKEN")).to.equal(jwtToken);
+			},
+		}).as("authRequestRoute");
 
 		cy.get("[data-test-id=spinner]").should("not.exist");
 
 		if (useEnterKey) {
-			cy.get('body').trigger('keydown', { keyCode: 13, which: 13 });
+			cy.get("body").trigger("keydown", { keyCode: 13, which: 13 });
 		} else {
 			cy.contains("LOG IN")
 				.click()
@@ -97,25 +97,27 @@ context("Login", () => {
 
 		cy.get("[data-test-id=spinner]").should("be.visible");
 
-		cy.wait('@authRequestRoute');
+		cy.wait("@authRequestRoute");
 
 		cy.location("pathname").should("include", "dashboard");
-
-
 	};
 
 	it("should be able to log user in", () => {
-		makeLoginRequest({useEnterKey: false});
+		makeLoginRequest({ useEnterKey: false });
 	});
 
 	it("should allow the user to log in using the Enter key", () => {
-		makeLoginRequest({useEnterKey: true});
+		makeLoginRequest({ useEnterKey: true });
 	});
 
-	const makeErrorLoginRequest = ({status, errorMessage, skipCorrectError = false}) => {
+	const makeErrorLoginRequest = ({
+		status,
+		errorMessage,
+		skipCorrectError = false,
+	}) => {
 		cy.get("[data-test-id=input-text-Email]")
-				.type("demo@user.com")
-				.should("have.value", "demo@user.com");
+			.type("demo@user.com")
+			.should("have.value", "demo@user.com");
 
 		cy.get("[data-test-id=input-password-Password]")
 			.type("password")
@@ -129,47 +131,67 @@ context("Login", () => {
 			response: {},
 			delay: 1000,
 			status: status,
-		}).as('authRequestRoute');
+		}).as("authRequestRoute");
 
-		cy.contains("LOG IN").click().should("be.disabled");
+		cy.contains("LOG IN")
+			.click()
+			.should("be.disabled");
 
 		// after incorrect, if password is edited then message should disappear
 		cy.get("[data-test-id=spinner]").should("be.visible");
 
-		cy.wait('@authRequestRoute');
+		cy.wait("@authRequestRoute");
 
 		cy.contains(errorMessage);
 
 		if (!skipCorrectError) {
 			cy.get("[data-test-id=input-password-Password]").type("{backspace}");
-			cy.get("[data-test-id=input-error-password-Password]").should('not.exist');
+			cy.get("[data-test-id=input-error-password-Password]").should(
+				"not.exist",
+			);
 		}
 	};
 
 	it("should show error if email or password wrong", () => {
-		makeErrorLoginRequest({status: 401, errorMessage: "Incorrect Email / Password combination!"});
+		makeErrorLoginRequest({
+			status: 401,
+			errorMessage: "Incorrect Email / Password combination!",
+		});
 	});
 
 	it("should show error if server sends weird status code", () => {
-		makeErrorLoginRequest({status: 300, errorMessage: "Incorrect Email / Password combination!"});
+		makeErrorLoginRequest({
+			status: 300,
+			errorMessage: "Incorrect Email / Password combination!",
+		});
 	});
 
 	it("should show error if server can't connect", () => {
-		makeErrorLoginRequest({status: 503, errorMessage: "Can't connect to server! Please retry."});
+		makeErrorLoginRequest({
+			status: 503,
+			errorMessage: "Can't connect to server! Please retry.",
+		});
 	});
 
 	it("should show error if server has internal error", () => {
-		makeErrorLoginRequest({status: 500, errorMessage: "Internal Server Error! Please retry."});
+		makeErrorLoginRequest({
+			status: 500,
+			errorMessage: "Internal Server Error! Please retry.",
+		});
 	});
 
 	it("should show verify email pop up if email not verified", () => {
-		cy.get('[data-test-id=modal-login-verification]').should("not.exist");
-		makeErrorLoginRequest({status: 418, errorMessage: "Please verify your email first.", skipCorrectError: true});
+		cy.get("[data-test-id=modal-login-verification]").should("not.exist");
+		makeErrorLoginRequest({
+			status: 418,
+			errorMessage: "Please verify your email first.",
+			skipCorrectError: true,
+		});
 
-		cy.get('[data-test-id=modal-login-verification]').should("be.visible");
+		cy.get("[data-test-id=modal-login-verification]").should("be.visible");
 
-		cy.contains('Important!');
-		cy.contains('You need to verify your account first before logging in.');
+		cy.contains("Important!");
+		cy.contains("You need to verify your account first before logging in.");
 		cy.contains("RESEND EMAIL");
 	});
 });

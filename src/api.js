@@ -29,6 +29,6 @@ export const get_notifications_api = {
 };
 
 export const get_projects_api = {
-	path: "${BASE_URL}/v1/projects",
+	path: "/v1/projects",
 	method: "GET",
 };
