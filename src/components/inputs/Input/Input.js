@@ -24,9 +24,16 @@ class Input extends React.PureComponent {
 						type={this.props.type}
 						value={this.props.inputValue}
 						disabled={this.props.disabled}
+						data-test-id={`input-${this.props.type}-${this.props.title}`}
 					/>
 				</InputDiv>
-				{this.props.showError && <ErrorDiv>{this.props.errorMessage}</ErrorDiv>}
+				{this.props.showError && (
+					<ErrorDiv
+						data-test-id={`input-error-${this.props.type}-${this.props.title}`}
+					>
+						{this.props.errorMessage}
+					</ErrorDiv>
+				)}
 			</MainDiv>
 		);
 	}

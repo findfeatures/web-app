@@ -21,7 +21,7 @@ class Checkbox extends React.PureComponent {
 					onChange={this.handleCheckChange}
 				/>
 				<StyledCheckbox checked={this.props.checked}>
-					<Icon viewBox="0 0 24 24">
+					<Icon viewBox="0 0 24 24" data-test-id="checkbox-svg">
 						<polyline points="20 3 9 15 4 9" />
 					</Icon>
 				</StyledCheckbox>

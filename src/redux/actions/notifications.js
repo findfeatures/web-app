@@ -4,7 +4,7 @@ import { GET_NOTIFICATIONS } from "./types";
 
 export const getNotifications = () =>
 	apiAction({
-		url: get_notifications_api.url,
+		path: get_notifications_api.path,
 		method: get_notifications_api.method,
 		label: GET_NOTIFICATIONS,
 		requiresAccessToken: true,

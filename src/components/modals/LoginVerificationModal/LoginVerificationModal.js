@@ -18,7 +18,7 @@ class LoginVerificationModal extends React.PureComponent {
 				onRequestClose={this.onRequestClose}
 				ariaHideApp={false}
 			>
-				<StyledDiv>
+				<StyledDiv data-test-id="modal-login-verification">
 					<StyledTitle>Important!</StyledTitle>
 					{this.props.finishedLoading
 						? "Thank you, your email has been sent again."

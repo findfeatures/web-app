@@ -4,7 +4,7 @@ import { AUTHENTICATE_USER, SET_JWT_TOKEN } from "./types";
 
 export const authenticateUser = (email, password) =>
 	apiAction({
-		url: auth_user_api.url,
+		path: auth_user_api.path,
 		method: auth_user_api.method,
 		data: {
 			email: email,

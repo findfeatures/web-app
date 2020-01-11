@@ -5,7 +5,7 @@ import { StyledDiv } from "./Spinner.Style.js";
 const Spinner = ({ color = "#fff" }) => {
 	/* icon from here: https://loading.io/css/ */
 	return (
-		<StyledDiv color={color}>
+		<StyledDiv color={color} data-test-id={"spinner"}>
 			<div></div>
 			<div></div>
 			<div></div>

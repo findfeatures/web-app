@@ -29,7 +29,7 @@ class Main extends React.Component {
 				stripe: window.Stripe(process.env.REACT_APP_STRIPE_API_KEY),
 			});
 		} else {
-			document.querySelector("#stripe-js").addEventListener("load", () => {
+			document.querySelector("#stripe-js").addEventListener("load", (event) => {
 				// Create Stripe instance once Stripe.js loads
 				this.setState({
 					stripe: window.Stripe(process.env.REACT_APP_STRIPE_API_KEY),
@@ -74,7 +74,7 @@ Main.propTypes = {
 };
 
 const mapSizesToProps = ({ width, height }) => ({
-	isSupportedScreenSize: width > 1000 && height > 600,
+	isSupportedScreenSize: width >= 1000 && height >= 600,
 });
 
 const mapStateToProps = reduxState => {

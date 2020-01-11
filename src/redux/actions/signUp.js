@@ -14,14 +14,14 @@ import {
 
 export const checkIfUserExists = email =>
 	apiAction({
-		url: check_user_api.url + `/${email}`,
+		path: check_user_api.path + `/${email}`,
 		method: check_user_api.method,
 		label: CHECK_IF_USER_EXISTS,
 	});
 
 export const signUpUser = (displayName, email, password) =>
 	apiAction({
-		url: sign_up_user_api.url,
+		path: sign_up_user_api.path,
 		data: {
 			display_name: displayName,
 			email: email,
@@ -33,7 +33,7 @@ export const signUpUser = (displayName, email, password) =>
 
 export const verifyEmail = (email, token) =>
 	apiAction({
-		url: verify_email_user_api.url,
+		path: verify_email_user_api.path,
 		data: {
 			email: email,
 			token: token,
@@ -44,7 +44,7 @@ export const verifyEmail = (email, token) =>
 
 export const resendTokenEmail = (email, password) =>
 	apiAction({
-		url: resend_email_user_api.url,
+		path: resend_email_user_api.path,
 		data: {
 			email: email,
 			password: password,

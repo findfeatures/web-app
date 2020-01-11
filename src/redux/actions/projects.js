@@ -4,7 +4,7 @@ import { GET_PROJECTS } from "./types";
 
 export const getProjects = () =>
 	apiAction({
-		url: get_projects_api.url,
+		path: get_projects_api.path,
 		method: get_projects_api.method,
 		label: GET_PROJECTS,
 		requiresAccessToken: true,

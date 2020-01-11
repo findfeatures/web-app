@@ -1,7 +1,8 @@
 import { API, API_END, API_START } from "./types";
 
 export const apiAction = ({
-	url = "",
+	path = "",
+	host = process.env.REACT_APP_BASE_URL || "http://localhost:8000",
 	method = "GET",
 	data = null,
 	requiresAccessToken = false,
@@ -15,7 +16,7 @@ export const apiAction = ({
 	return {
 		type: API,
 		payload: {
-			url,
+			url: host + path,
 			method,
 			data,
 			defaultData,
