@@ -1,0 +1,10 @@
+/*
+fix for the issue where routes aren't 100%.
+https://github.com/gatsbyjs/gatsby/issues/7310#issuecomment-473713043
+*/
+div[role="group"][tabindex] {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}

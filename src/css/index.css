@@ -9,6 +9,12 @@ body {
   margin: 0;
 }
 
+div[role="group"][tabindex] {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 /*Had to move these styles into here because of a bug with styled-components
 where fonts are requested from the server (flickering happens) when props for
 a component changes*/

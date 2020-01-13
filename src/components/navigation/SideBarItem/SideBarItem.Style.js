@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ItemDiv = styled.div`
 	width: 100%;
-	height: 56px;
+	height: 65px;
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -16,7 +16,7 @@ export const ItemDiv = styled.div`
 export const ContentDiv = styled.div`
 	width: 100%;
 	height: 100%;
-	
+
 	user-select: none;
 
 	box-sizing: border-box;
@@ -25,15 +25,16 @@ export const ContentDiv = styled.div`
 	flex-direction: column;
 	justify-content: center;
 
-	box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.2);
-
 	border: ${props => (props.selected ? "0.5px solid black" : "")};
 
 	:hover {
 		border: 2px solid black;
 		font-weight: 600;
+	}
+
+	:active {
+		color: #0055fe;
+		border: 2px solid #0055fe;
 	}
 	font-size: ${props => props.fontSize};
 `;

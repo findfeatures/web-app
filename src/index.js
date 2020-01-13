@@ -2,6 +2,7 @@ import "react-tippy/dist/tippy.css";
 
 import "./css/index.css";
 import "./css/tippyOverides.css";
+import "./css/flexBoxOverrides.css";
 
 import React from "react";
 import ReactDOM from "react-dom";

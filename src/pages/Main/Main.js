@@ -15,6 +15,7 @@ import FourOFour from "../FourOFour";
 import Home from "../Home";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import Welcome from "../Welcome";
 import { StyledRouter } from "./Main.Style.js";
 
 // StripeProvider is used in here because want to use the componentDidMount as stripe is added async
@@ -58,6 +59,7 @@ class Main extends React.Component {
 						<SignUp path="/sign-up" />
 						<EmailVerification path="/email-verification" />
 						<Dashboard path="/dashboard">
+							<Welcome path="/" />
 							<CreateProject path="/projects/create" />
 							<Home path=":project_id/home" />
 						</Dashboard>

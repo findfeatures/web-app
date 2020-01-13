@@ -73,21 +73,21 @@ class Dashboard extends React.Component {
 	};
 
 	getSelectedProjectID = () => {
-		let selectedProjectID = null;
-
 		if (this.props["*"] === "projects/create") {
-			selectedProjectID = 0;
+			return 0;
 		}
 
-		return selectedProjectID;
+		const urlSplit = this.props["*"].split("/");
+
+		if (urlSplit.length > 0) {
+			return parseInt(urlSplit[0]);
+		}
 	};
 
 	showFourOFour = () => {
 		// not the happiest with this code but it's something that works and has the functionality
 		// we want (show 404 on routes not defined..)
 		const route = this.props["*"];
-
-		const invalidToken = !this.state.hasValidToken;
 
 		// generate dynamic routes allowed
 		const complexRoutes = [":project_id/home"];
@@ -108,11 +108,15 @@ class Dashboard extends React.Component {
 			...validGeneratedRoutes,
 		].includes(route);
 
-		return invalidToken || invalidChildrenRoute;
+		return invalidChildrenRoute;
 	};
 
 	render() {
-		if (this.showFourOFour() && !this.loadingInitialData()) {
+		// need to check token, otherwise if its not there then we just hang because no data is requested.
+		if (
+			!this.state.hasValidToken ||
+			(this.showFourOFour() && !this.loadingInitialData())
+		) {
 			return <FourOFour />;
 		}
 
