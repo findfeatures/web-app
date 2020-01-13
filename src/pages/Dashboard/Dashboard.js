@@ -9,6 +9,7 @@ import SideBar from "../../components/navigation/SideBar";
 import { getProjects } from "../../redux/actions/projects";
 import FourOFour from "../FourOFour";
 import {
+	ContentWrapper,
 	DashboardPageDiv,
 	NavBarDiv,
 	PageDiv,
@@ -71,16 +72,51 @@ class Dashboard extends React.Component {
 		return this.state.projectDataError;
 	};
 
-	render() {
+	getSelectedProjectID = () => {
+		let selectedProjectID = null;
+
+		if (this.props["*"] === "projects/create") {
+			selectedProjectID = 0;
+		}
+
+		return selectedProjectID;
+	};
+
+	showFourOFour = () => {
 		// not the happiest with this code but it's something that works and has the functionality
 		// we want (show 404 on routes not defined..)
-		const showFourOFour =
-			!this.state.hasValidToken ||
-			!this.props.childrenRoutes.includes(this.props["*"]);
+		const route = this.props["*"];
 
-		if (showFourOFour) {
+		const invalidToken = !this.state.hasValidToken;
+
+		// generate dynamic routes allowed
+		const complexRoutes = [":project_id/home"];
+
+		const projectIDs = this.props.projects.map(project => project.id);
+		const validGeneratedRoutes = complexRoutes
+			.map(complexRoute => {
+				return projectIDs.map(projectID =>
+					complexRoute.replace(":project_id", projectID),
+				);
+			})
+			.flat();
+
+		// check children routes
+		const simpleRoutes = ["", "projects/create"];
+		const invalidChildrenRoute = ![
+			...simpleRoutes,
+			...validGeneratedRoutes,
+		].includes(route);
+
+		return invalidToken || invalidChildrenRoute;
+	};
+
+	render() {
+		if (this.showFourOFour() && !this.loadingInitialData()) {
 			return <FourOFour />;
 		}
+
+		const selectedProjectID = this.getSelectedProjectID();
 
 		return (
 			<DashboardPageDiv>
@@ -89,9 +125,12 @@ class Dashboard extends React.Component {
 				</NavBarDiv>
 				<PageDiv>
 					<SideBarWrapper>
-						<SideBar projects={this.props.projects} />
+						<SideBar
+							projects={this.props.projects}
+							selectedProjectID={selectedProjectID}
+						/>
 					</SideBarWrapper>
-					{this.props.children}
+					<ContentWrapper>{this.props.children}</ContentWrapper>
 				</PageDiv>
 				<InitialDataLoadOverlay
 					show={this.loadingInitialData()}
@@ -103,7 +142,6 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.defaultProps = {
-	childrenRoutes: [],
 	getProjects: () => {},
 	projects: [],
 	isRequestingProjects: false,
@@ -111,7 +149,6 @@ Dashboard.defaultProps = {
 };
 
 Dashboard.propTypes = {
-	childrenRoutes: PropTypes.array.isRequired,
 	getProjects: PropTypes.func.isRequired,
 	projects: PropTypes.array.isRequired,
 	isRequestingProjects: PropTypes.bool.isRequired,

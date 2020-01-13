@@ -21,13 +21,16 @@ export const NavBarDiv = styled.div`
 export const PageDiv = styled.div`
 	flex: 2;
 	position: relative;
+	display: flex;
 `;
 
 export const SideBarWrapper = styled.div`
 	height: 100%;
 	width: 50px;
-	background-color: red;
-	position: absolute;
-	left: 0;
 	box-shadow: 0px 0px 67px 0px rgba(0, 0, 0, 0.19);
+`;
+
+export const ContentWrapper = styled.div`
+	height: 100%;
+	width: 100%;
 `;

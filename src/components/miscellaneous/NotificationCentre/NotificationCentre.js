@@ -1,6 +1,6 @@
 import React from "react";
 
-import Spinner from "../miscellaneous/Spinner";
+import Spinner from "../Spinner";
 import {
 	Content,
 	NoNotificationWrapper,

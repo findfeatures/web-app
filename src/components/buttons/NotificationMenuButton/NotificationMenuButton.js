@@ -4,7 +4,7 @@ import { Tooltip } from "react-tippy";
 
 import { ReactComponent as BellSVG } from "../../../assets/svgs/bell.svg";
 import { getNotifications } from "../../../redux/actions/notifications";
-import NotificationCentre from "../../NotificationCentre";
+import NotificationCentre from "../../miscellaneous/NotificationCentre";
 import MenuButton from "../MenuButton";
 
 const NotificationMenuButton = ({

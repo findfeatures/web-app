@@ -16,6 +16,8 @@ export const ItemDiv = styled.div`
 export const ContentDiv = styled.div`
 	width: 100%;
 	height: 100%;
+	
+	user-select: none;
 
 	box-sizing: border-box;
 	display: flex;

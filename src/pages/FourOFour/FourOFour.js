@@ -1,17 +1,16 @@
-import { navigate } from "@reach/router";
-import jwt from "jsonwebtoken";
 import React from "react";
 
 import BlockButton from "../../components/buttons/BlockButton";
 import LargeCard from "../../components/cards/LargeCard";
+import { handleHomeButtonClicked } from "../utils.js";
 import {
 	ButtonWrapper,
 	FourOFourPageDiv,
 	StyledH1,
 } from "./FourOFour.Style.js";
 
-class FourOFour extends React.Component {
-	lostMessages = [
+const FourOFour = () => {
+	const lostMessages = [
 		"You seem lost, here's a way home!",
 		"Not found :(",
 		"Don't worry, we all get lost sometimes.",
@@ -23,38 +22,21 @@ class FourOFour extends React.Component {
 		"What is the matrix?",
 	];
 
-	onClickHandler = () => {
-		// todo: make this a function so it can be shared :)
-		try {
-			const token = jwt.decode(sessionStorage.getItem("JWT_TOKEN"));
+	const message = lostMessages[Math.floor(Math.random() * lostMessages.length)];
 
-			if (token.exp > Date.now().valueOf() / 1000) {
-				navigate("/dashboard");
-			}
-		} catch (error) {
-			navigate("/login");
-		}
-	};
-
-	render() {
-		const message = this.lostMessages[
-			Math.floor(Math.random() * this.lostMessages.length)
-		];
-
-		return (
-			<FourOFourPageDiv>
-				<LargeCard>
-					<StyledH1>404</StyledH1>
-					<h2>{message}</h2>
-					<ButtonWrapper>
-						<BlockButton onClickHandler={this.onClickHandler}>
-							TAKE ME HOME
-						</BlockButton>
-					</ButtonWrapper>
-				</LargeCard>
-			</FourOFourPageDiv>
-		);
-	}
-}
+	return (
+		<FourOFourPageDiv>
+			<LargeCard>
+				<StyledH1>404</StyledH1>
+				<h2>{message}</h2>
+				<ButtonWrapper>
+					<BlockButton onClickHandler={handleHomeButtonClicked}>
+						TAKE ME HOME
+					</BlockButton>
+				</ButtonWrapper>
+			</LargeCard>
+		</FourOFourPageDiv>
+	);
+};
 
 export default FourOFour;

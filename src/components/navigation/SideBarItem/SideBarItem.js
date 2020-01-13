@@ -10,13 +10,18 @@ import {
 const SideBarItem = ({
 	createNew = false,
 	selected = false,
-	title = "Project",
+	name = "Project",
 	onClickHandler = () => {},
+	projectID = null,
 }) => {
-	const projectTitle = createNew ? "Create New Project" : title;
+	const projectTitle = createNew ? "Create New Project" : name;
+
+	const onItemClickHandler = () => {
+		onClickHandler(projectID);
+	};
 
 	return (
-		<ItemDiv onClick={onClickHandler}>
+		<ItemDiv onClick={onItemClickHandler}>
 			<StyledTooltip
 				html={<TooltipContent>{projectTitle}</TooltipContent>}
 				position="right"
