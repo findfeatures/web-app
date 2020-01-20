@@ -1,4 +1,5 @@
 .tippy-tooltip {
     /*overrides the default padding*/
     padding: 3px;
+    border-radius: 0px;
 }

@@ -43,8 +43,3 @@ export const StyledTooltip = styled(Tooltip)`
 	width: 100%;
 	height: 100%;
 `;
-
-export const TooltipContent = styled.div`
-	padding: 5px;
-	font-weight: 700;
-`;

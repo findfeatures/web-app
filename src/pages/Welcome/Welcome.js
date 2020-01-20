@@ -7,11 +7,9 @@ class Welcome extends React.PureComponent {
 	render() {
 		return (
 			<StyledFullPage>
-				<FullPageCard></FullPageCard>
-
-				{/*<FullPageCard>*/}
-				{/*	<h1>Hello World!</h1>*/}
-				{/*</FullPageCard>*/}
+				<FullPageCard>
+					<h1>Welcome to Find Features</h1>
+				</FullPageCard>
 			</StyledFullPage>
 		);
 	}

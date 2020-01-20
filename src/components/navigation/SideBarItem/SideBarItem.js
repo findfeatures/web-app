@@ -1,11 +1,7 @@
 import React from "react";
 
-import {
-	ContentDiv,
-	ItemDiv,
-	StyledTooltip,
-	TooltipContent,
-} from "./SideBarItem.Style.js";
+import ProjectTooltip from "../../miscellaneous/ProjectTooltip";
+import { ContentDiv, ItemDiv, StyledTooltip } from "./SideBarItem.Style.js";
 
 const SideBarItem = ({
 	createNew = false,
@@ -14,7 +10,7 @@ const SideBarItem = ({
 	onClickHandler = () => {},
 	projectID = null,
 }) => {
-	const projectTitle = createNew ? "Create New Project" : name;
+	const projectTitle = createNew ? "Projects" : name;
 
 	const onItemClickHandler = () => {
 		onClickHandler(projectID);
@@ -23,7 +19,15 @@ const SideBarItem = ({
 	return (
 		<ItemDiv onClick={onItemClickHandler}>
 			<StyledTooltip
-				html={<TooltipContent>{projectTitle}</TooltipContent>}
+				// html={<TooltipContent>{projectTitle}</TooltipContent>}
+				html={
+					<ProjectTooltip
+						title={projectTitle}
+						onClickHandler={onItemClickHandler}
+						isProject={!createNew}
+					/>
+				}
+				interactive={true}
 				position="right"
 				theme="light"
 				animation="perspective"

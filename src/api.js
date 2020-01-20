@@ -1,3 +1,6 @@
+/*
+--------- User API ---------
+ */
 export const auth_user_api = {
 	path: `/v1/user/auth`,
 	method: "POST",
@@ -28,7 +31,20 @@ export const get_notifications_api = {
 	method: "GET",
 };
 
+/*
+--------- Project API ---------
+ */
+
 export const get_projects_api = {
 	path: "/v1/projects",
 	method: "GET",
+};
+
+/*
+--------- Stripe API ---------
+ */
+
+export const get_stripe_checkout_session = {
+	path: "/v1/stripe/checkout-session",
+	method: "POST",
 };

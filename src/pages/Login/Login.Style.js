@@ -43,6 +43,7 @@ export const StyledLabel = styled.label`
 	align-items: center;
 	flex-direction: row;
 	cursor: pointer;
+	user-select: none;
 `;
 
 export const ExtraDetailsDiv = styled.div`
@@ -68,5 +69,6 @@ export const StyledSignUpDiv = styled.div`
 	left: 0;
 	margin: 0 0 15px 25px;
 	font-weight: 500;
+	user-select: none;
 	cursor: pointer;
 `;
