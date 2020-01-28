@@ -19,6 +19,7 @@ export const PageDiv = styled.div`
 	flex: 2;
 	position: relative;
 	display: flex;
+	overflow: hidden;
 `;
 
 export const SideBarWrapper = styled.div`

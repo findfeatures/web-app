@@ -25,6 +25,7 @@ const SideBarItem = ({
 						title={projectTitle}
 						onClickHandler={onItemClickHandler}
 						isProject={!createNew}
+						projectID={projectID}
 					/>
 				}
 				interactive={true}
@@ -32,6 +33,13 @@ const SideBarItem = ({
 				theme="light"
 				animation="perspective"
 				arrow="true"
+				// popperOptions={{
+				//   modifiers: {
+				//     preventOverflow: {
+				//       boundariesElement: 'window'
+				//     }
+				//   }
+				// }}
 			>
 				<ContentDiv fontSize={createNew ? "40px" : "18px"} selected={selected}>
 					{createNew ? <div>+</div> : <div>{projectTitle.substring(0, 2)}</div>}

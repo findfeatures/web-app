@@ -177,7 +177,10 @@ class Login extends React.Component {
 	};
 
 	handleSignUpClicked = () => {
-		navigate("/sign-up");
+		// disable clicking this if 'logging' in.
+		if (!this.state.loading) {
+			navigate("/sign-up");
+		}
 	};
 
 	setShowVerificationModal = val => {

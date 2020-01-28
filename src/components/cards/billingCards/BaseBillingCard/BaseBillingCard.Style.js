@@ -67,5 +67,6 @@ export const ButtonWrapper = styled.div`
 
 export const StyledFooter = styled.p`
 	position: absolute;
-	bottom: -10px;
+	bottom: -5px;
+	font-size: 13px;
 `;

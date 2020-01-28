@@ -13,3 +13,8 @@ export const StyledDiv = styled.div`
 	top: 0;
 	bottom: 0;
 `;
+
+export const StyledButtonContainer = styled.div`
+	width: 200px;
+	height: 60px;
+`;

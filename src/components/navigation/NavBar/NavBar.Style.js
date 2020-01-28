@@ -4,6 +4,11 @@ export const ContentDiv = styled.div`
 	height: 100%;
 	width: 100%;
 	position: relative;
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 `;
 
 export const LogoContainer = styled.div`
@@ -36,4 +41,11 @@ export const RightButtonsDiv = styled.div`
 	align-items: center;
 	flex-direction: row;
 	justify-content: center;
+`;
+
+export const ProjectNameDiv = styled.div`
+	font-size: 16px;
+	font-weight: 800;
+	user-select: none;
+	cursor: pointer;
 `;

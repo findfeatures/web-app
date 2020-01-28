@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Elements } from "react-stripe-elements";
 
 import FullPageCard from "../../components/cards/FullPageCard";
 import BillingInfo from "../../components/miscellaneous/BillingInfo";
@@ -22,7 +23,9 @@ const CreateProject = () => {
 				);
 			case 1:
 				return (
-					<CreateProjectInfo billingId={billingId}>Page 2</CreateProjectInfo>
+					<Elements>
+						<CreateProjectInfo billingId={billingId}>Page 2</CreateProjectInfo>
+					</Elements>
 				);
 			default:
 				return <div>THERES AN ISSUE</div>;

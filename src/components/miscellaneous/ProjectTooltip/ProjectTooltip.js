@@ -1,9 +1,15 @@
+import { navigate } from "@reach/router";
 import React from "react";
 
 import MoreMenuItemButton from "../../buttons/MoreMenuItemButton";
 import { Content, StyledHr, Title } from "./ProjectTooltip.Style.js";
 
-const ProjectTooltip = ({ title, onClickHandler, isProject = true }) => {
+const ProjectTooltip = ({
+	title,
+	onClickHandler,
+	isProject = true,
+	projectID,
+}) => {
 	return (
 		<Content>
 			<Title onClick={onClickHandler}>{title}</Title>
@@ -17,11 +23,22 @@ const ProjectTooltip = ({ title, onClickHandler, isProject = true }) => {
 						text={"Home"}
 					/>
 					<MoreMenuItemButton
-						onClickHandler={() => {}}
-						text={"Getting Started"}
+						onClickHandler={() => {
+							navigate(`/dashboard/${projectID}/feature-flags`);
+						}}
+						text={"Feature Flags"}
+					/>
+					<MoreMenuItemButton
+						onClickHandler={() => {
+							navigate(`/dashboard/${projectID}/audit-trail`);
+						}}
+						text={"Audit Trail"}
 					/>
 					<MoreMenuItemButton onClickHandler={() => {}} text={"Analytics"} />
-					<MoreMenuItemButton onClickHandler={() => {}} text={"Invite Users"} />
+					<MoreMenuItemButton
+						onClickHandler={() => {}}
+						text={"User Management"}
+					/>
 					<MoreMenuItemButton onClickHandler={() => {}} text={"Settings"} />
 					<StyledHr />
 					<MoreMenuItemButton

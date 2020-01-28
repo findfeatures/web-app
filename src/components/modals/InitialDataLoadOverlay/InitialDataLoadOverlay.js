@@ -2,8 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import ReactDOM from "react-dom";
 
+import BlockButton from "../../buttons/BlockButton";
 import Spinner from "../../miscellaneous/Spinner";
-import { StyledDiv } from "./InitialDataLoadOverlay.Style.js";
+import {
+	StyledButtonContainer,
+	StyledDiv,
+} from "./InitialDataLoadOverlay.Style.js";
 
 class InitialDataLoadOverlay extends React.PureComponent {
 	// maybe add a 'welcome to find features screen which shows up for 1second'
@@ -22,13 +26,21 @@ class InitialDataLoadOverlay extends React.PureComponent {
 				<StyledDiv>
 					{this.props.error ? (
 						<>
+							<h1>Find Features</h1>
 							<h1>
 								There's been an error loading your data,
 								<br />
-								please refresh the page and if the problem persists,
+								please reload the page and if the problem persists,
 								<br />
 								please get in touch with support.
 							</h1>
+							<StyledButtonContainer>
+								<BlockButton
+									onClickHandler={() => window.location.reload(false)}
+								>
+									RELOAD
+								</BlockButton>
+							</StyledButtonContainer>
 						</>
 					) : (
 						<>

@@ -11,6 +11,8 @@ export const CardWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	position: relative;
 `;
 
 export const Card = styled.div`

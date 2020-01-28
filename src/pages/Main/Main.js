@@ -7,10 +7,13 @@ import withSizes from "react-sizes";
 import { StripeProvider } from "react-stripe-elements";
 
 import UnsupportedErrorOverlay from "../../components/modals/UnsupportedErrorOverlay";
+import AuditTrail from "../AuditTrail";
 import CreateProject from "../CreateProject";
+import CreateProjectSuccess from "../CreateProjectSuccess";
 import Dashboard from "../Dashboard";
 import EmailVerification from "../EmailVerification";
 import Error from "../Error/Error";
+import FeatureFlags from "../FeatureFlags";
 import FourOFour from "../FourOFour";
 import Home from "../Home";
 import Login from "../Login";
@@ -60,8 +63,11 @@ class Main extends React.Component {
 						<EmailVerification path="/email-verification" />
 						<Dashboard path="/dashboard">
 							<Welcome path="/" />
+							<CreateProjectSuccess path="/projects/create/success" />
 							<CreateProject path="/projects/create" />
 							<Home path=":project_id/home" />
+							<FeatureFlags path=":project_id/feature-flags" />
+							<AuditTrail path=":project_id/audit-trail" />
 						</Dashboard>
 						<Error path="/error" />
 						<FourOFour path="/404" default />

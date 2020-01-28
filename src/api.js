@@ -40,6 +40,11 @@ export const get_projects_api = {
 	method: "GET",
 };
 
+export const get_project_completed_setup_api = {
+	path: "/v1/projects/complete",
+	method: "POST",
+};
+
 /*
 --------- Stripe API ---------
  */

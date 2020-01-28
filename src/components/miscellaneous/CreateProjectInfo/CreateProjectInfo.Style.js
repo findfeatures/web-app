@@ -42,8 +42,11 @@ export const BillingSelectionDiv = styled.div`
 	margin-top: 20px;
 `;
 export const QuestionTitleDiv = styled.div`
-	font-weight: 800;
 	margin-bottom: 15px;
+
+	> b {
+		font-weight: 900;
+	}
 `;
 
 export const InputWrapper = styled.div`

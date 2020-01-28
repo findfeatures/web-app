@@ -12,7 +12,7 @@ const StartupBillingCard = ({
 	return (
 		<BaseBillingCard
 			id={"plan_Ga0Xrskb4VQpwq"}
-			title={"Startup"}
+			title={"Startup 🚀"}
 			price={"$19.99 per month"}
 			showBorder={showBorder}
 			footerText={footerText}

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { injectStripe } from "react-stripe-elements";
 
-import { createProject } from "../../../redux/actions/projects";
 import { getStripeCheckoutSession } from "../../../redux/actions/stripe";
 import BusinessBillingCard from "../../cards/billingCards/BusinessBillingCard";
 import EnterpriseBillingCard from "../../cards/billingCards/EnterpriseBillingCard";
 import StartupBillingCard from "../../cards/billingCards/StartupBillingCard";
 import SimpleInput from "../../inputs/SimpleInput";
-import Spinner from "../Spinner";
 import {
 	BillingSelectionDiv,
 	BillingWrapper,
@@ -22,7 +21,7 @@ import {
 	Wrapper,
 } from "./CreateProjectInfo.Style.js";
 
-const CreateProjectInfo = ({ billingId }) => {
+const CreateProjectInfo = ({ billingId, stripe }) => {
 	const dispatch = useDispatch();
 
 	const [billId, setBillingId] = useState(billingId);
@@ -40,7 +39,8 @@ const CreateProjectInfo = ({ billingId }) => {
 
 	useEffect(() => {
 		if (!isRequestingStripeCheckoutSession && stripeSessionId !== "") {
-			window.Stripe.redirectToCheckout({
+			// todo: check what happens statusCode comes back BAD!
+			stripe.redirectToCheckout({
 				sessionId: stripeSessionId,
 			});
 		}
@@ -60,8 +60,8 @@ const CreateProjectInfo = ({ billingId }) => {
 			dispatch(
 				getStripeCheckoutSession({
 					plan: id,
-					successUrl: "http://localhost:3000/projects/create/success",
-					cancelUrl: "http://localhost:3000/projects/create/error",
+					successUrl: "http://localhost:3000/dashboard/projects/create/success",
+					cancelUrl: "http://localhost:3000/error",
 					projectData: {
 						name: projectName,
 					},
@@ -77,7 +77,7 @@ const CreateProjectInfo = ({ billingId }) => {
 					<StartupBillingCard
 						showBorder={true}
 						purchaseText={"Create Now"}
-						footerText={"Continue to the billing page!"}
+						footerText={"You'll be redirected to Stripe for payment."}
 						onClickHandler={createProject}
 						showSpinner={isRequestingStripeCheckoutSession}
 					/>
@@ -87,7 +87,7 @@ const CreateProjectInfo = ({ billingId }) => {
 					<BusinessBillingCard
 						showBorder={true}
 						purchaseText={"Create Now"}
-						footerText={"Continue to the billing page!"}
+						footerText={"You'll be redirected to Stripe for payment."}
 						onClickHandler={createProject}
 						showSpinner={isRequestingStripeCheckoutSession}
 					/>
@@ -97,7 +97,7 @@ const CreateProjectInfo = ({ billingId }) => {
 					<EnterpriseBillingCard
 						showBorder={true}
 						purchaseText={"Create Now"}
-						footerText={"Continue to the billing page!"}
+						footerText={"You'll be redirected to Stripe for payment."}
 						onClickHandler={createProject}
 						showSpinner={isRequestingStripeCheckoutSession}
 					/>
@@ -115,14 +115,16 @@ const CreateProjectInfo = ({ billingId }) => {
 		<Wrapper>
 			<LeftWrapper>
 				<BillingSelectionDiv>
-					<QuestionTitleDiv>Select your plan type</QuestionTitleDiv>
+					<QuestionTitleDiv>
+						<b>Select your plan type</b>
+					</QuestionTitleDiv>
 					<ProjectSelectedWrapper>
 						<ProjectSelectedButtonWrapper>
 							<ProjectSelectButtonContent
 								selected={billId === "plan_Ga0Xrskb4VQpwq"}
 								onClick={() => setBillingIdHandler("plan_Ga0Xrskb4VQpwq")}
 							>
-								Startup
+								Startup 🚀
 							</ProjectSelectButtonContent>
 						</ProjectSelectedButtonWrapper>
 						<ProjectSelectedButtonWrapper>
@@ -130,7 +132,7 @@ const CreateProjectInfo = ({ billingId }) => {
 								selected={billId === "plan_Ga0YFeoBspguoC"}
 								onClick={() => setBillingIdHandler("plan_Ga0YFeoBspguoC")}
 							>
-								Business
+								Business 💼
 							</ProjectSelectButtonContent>
 						</ProjectSelectedButtonWrapper>
 						<ProjectSelectedButtonWrapper right={true}>
@@ -138,13 +140,15 @@ const CreateProjectInfo = ({ billingId }) => {
 								selected={billId === "plan_Ga0YNRfEEaNcGI"}
 								onClick={() => setBillingIdHandler("plan_Ga0YNRfEEaNcGI")}
 							>
-								Enterprise
+								Enterprise 🏢
 							</ProjectSelectButtonContent>
 						</ProjectSelectedButtonWrapper>
 					</ProjectSelectedWrapper>
 				</BillingSelectionDiv>
 				<NameCreationDiv>
-					<QuestionTitleDiv>Name your project</QuestionTitleDiv>
+					<QuestionTitleDiv>
+						<b>Name your project</b>️
+					</QuestionTitleDiv>
 					<InputWrapper>
 						<SimpleInput
 							inputValue={projectName}
@@ -163,4 +167,4 @@ const CreateProjectInfo = ({ billingId }) => {
 	);
 };
 
-export default CreateProjectInfo;
+export default injectStripe(CreateProjectInfo);

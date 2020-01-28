@@ -12,7 +12,7 @@ const EnterpriseBillingCard = ({
 	return (
 		<BaseBillingCard
 			id={"plan_Ga0YNRfEEaNcGI"}
-			title={"Enterprise"}
+			title={"Enterprise 🏢"}
 			price={"$399.99 per month"}
 			showBorder={showBorder}
 			footerText={footerText}
@@ -24,6 +24,7 @@ const EnterpriseBillingCard = ({
 				"Unlimited Requests p/Day",
 				"Support Within 24 Hours",
 				["Permission Roles", "Read Only and Admin"],
+				"Audit Log",
 			]}
 			onClickHandler={id => onClickHandler(id)}
 			showSpinner={showSpinner}

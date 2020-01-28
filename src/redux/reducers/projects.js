@@ -1,10 +1,20 @@
-import { API_END, API_START, GET_PROJECTS } from "../actions/types";
+import {
+	API_END,
+	API_START,
+	GET_PROJECTS,
+	GET_PROJECT_COMPLETED_SETUP,
+} from "../actions/types";
 
 const initialState = {
 	isRequestingProjects: false,
-	data: [],
-	statusCode: 200,
-	error: null,
+	projectsData: [],
+	projectsStatusCode: 200,
+	projectsError: null,
+
+	isRequestingProjectCompletedSetup: false,
+	projectCompletedData: false,
+	projectCompletedStatusCode: 200,
+	projectCompletedError: null,
 };
 
 const apiStartGetProjects = (state, action) => {
@@ -14,13 +24,30 @@ const apiStartGetProjects = (state, action) => {
 	};
 };
 
+const apiStartGetProjectCompletedSetup = (state, action) => {
+	return {
+		...state,
+		isRequestingProjectCompletedSetup: true,
+	};
+};
+
 const apiEndGetProjects = (state, action) => {
 	return {
 		...state,
 		isRequestingProjects: false,
-		statusCode: action.statusCode,
-		error: action.error,
-		data: action.data.projects || action.data,
+		projectsStatusCode: action.statusCode,
+		projectsData: action.data.projects || action.data,
+		projectsError: action.error,
+	};
+};
+
+const apiEndGetProjectCompletedSetup = (state, action) => {
+	return {
+		...state,
+		isRequestingProjectCompletedSetup: false,
+		projectCompletedStatusCode: action.statusCode,
+		projectCompletedError: action.error,
+		projectCompletedData: action.data.completed,
 	};
 };
 
@@ -32,10 +59,16 @@ export default function projects(state = initialState, action) {
 			if (payload === GET_PROJECTS) {
 				return apiStartGetProjects(state, action);
 			}
+			if (payload === GET_PROJECT_COMPLETED_SETUP) {
+				return apiStartGetProjectCompletedSetup(state, action);
+			}
 			break;
 		case API_END:
 			if (payload === GET_PROJECTS) {
 				return apiEndGetProjects(state, action);
+			}
+			if (payload === GET_PROJECT_COMPLETED_SETUP) {
+				return apiEndGetProjectCompletedSetup(state, action);
 			}
 			break;
 		default:

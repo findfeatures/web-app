@@ -84,13 +84,28 @@ class Dashboard extends React.Component {
 		}
 	};
 
+	getSelectedProjectName = projectID => {
+		for (let i = 0; i < this.props.projects.length; i++) {
+			const project = this.props.projects[i];
+
+			if (project.id === projectID) {
+				return project.name;
+			}
+		}
+		return "";
+	};
+
 	showFourOFour = () => {
 		// not the happiest with this code but it's something that works and has the functionality
 		// we want (show 404 on routes not defined..)
 		const route = this.props["*"];
 
 		// generate dynamic routes allowed
-		const complexRoutes = [":project_id/home"];
+		const complexRoutes = [
+			":project_id/home",
+			":project_id/feature-flags",
+			":project_id/audit-trail",
+		];
 
 		const projectIDs = this.props.projects.map(project => project.id);
 		const validGeneratedRoutes = complexRoutes
@@ -102,7 +117,7 @@ class Dashboard extends React.Component {
 			.flat();
 
 		// check children routes
-		const simpleRoutes = ["", "projects/create"];
+		const simpleRoutes = ["", "projects/create", "projects/create/success"];
 		const invalidChildrenRoute = ![
 			...simpleRoutes,
 			...validGeneratedRoutes,
@@ -121,11 +136,15 @@ class Dashboard extends React.Component {
 		}
 
 		const selectedProjectID = this.getSelectedProjectID();
+		const selectedProjectName = this.getSelectedProjectName(selectedProjectID);
 
 		return (
 			<DashboardPageDiv>
 				<NavBarDiv>
-					<NavBar />
+					<NavBar
+						projectName={selectedProjectName}
+						projectID={selectedProjectID}
+					/>
 				</NavBarDiv>
 				<PageDiv>
 					<SideBarWrapper>
@@ -161,9 +180,9 @@ Dashboard.propTypes = {
 
 const mapStateToProps = reduxState => {
 	return {
-		projects: reduxState.projects.data,
+		projects: reduxState.projects.projectsData,
 		isRequestingProjects: reduxState.projects.isRequestingProjects,
-		projectRequestStatusCode: reduxState.projects.statusCode,
+		projectRequestStatusCode: reduxState.projects.projectsStatusCode,
 	};
 };
 
